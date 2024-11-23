@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "ComposeExoPlayer"
 include(":app")
+include(":music_player")
