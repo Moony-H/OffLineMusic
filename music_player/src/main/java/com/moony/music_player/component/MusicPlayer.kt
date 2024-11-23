@@ -14,14 +14,14 @@ import androidx.media3.ui.PlayerView
 
 
 @Composable
-fun MusicPlayer() {
+fun MusicPlayer(modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val player = remember { ExoPlayer.Builder(context).build() }
     val videoUri by remember { mutableStateOf("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4") }
     player.setMediaItem(MediaItem.fromUri(videoUri))
     player.prepare()
     player.play()
-    AndroidView(modifier = Modifier.fillMaxSize(), factory = {
+    AndroidView(modifier = modifier.fillMaxSize(), factory = {
         PlayerView(context)
     }) {
         it.player = player

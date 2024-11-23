@@ -12,6 +12,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.moony.composeexoplayer.ui.theme.ComposeExoPlayerTheme
+import com.moony.music_player.MusicScreen
+import com.moony.music_player.component.MusicPlayer
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,10 +22,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             ComposeExoPlayerTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    MusicScreen(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
