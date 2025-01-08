@@ -22,17 +22,17 @@ fun MusicPlayer(modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val player = remember { ExoPlayer.Builder(context).build() }
     val musicUri by remember { mutableStateOf("https://storage.googleapis.com/exoplayer-test-media-0/play.mp3") }
-    //val videoUri by remember { mutableStateOf("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4") }
     player.setMediaItem(MediaItem.fromUri(musicUri))
-    AndroidView(
-        modifier = modifier.fillMaxSize(),
-        factory = {
-            PlayerView(context)
-        }) {
-        it.player = player
-    }
 
-    player.playWhenReady = true
     player.prepare()
     player.play()
+
+
+//    AndroidView(
+//        modifier = modifier.fillMaxSize(),
+//        factory = {
+//            PlayerView(context)
+//        }) {
+//        it.player = player
+//    }
 }
