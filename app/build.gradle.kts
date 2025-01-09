@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.moony.composeexoplayer"
+    namespace = "com.moony.offlinemusic"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.moony.composeexoplayer"
+        applicationId = "com.moony.offlinemusic"
         minSdk = 24
         targetSdk = 35
         versionCode = 1

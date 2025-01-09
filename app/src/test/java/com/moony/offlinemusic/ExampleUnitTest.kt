@@ -1,4 +1,4 @@
-package com.moony.composeexoplayer
+package com.moony.offlinemusic
 
 import org.junit.Test
 

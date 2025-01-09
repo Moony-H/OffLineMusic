@@ -19,7 +19,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ComposeExoPlayer"
+rootProject.name = "OffLineMusic"
 include(":app")
 include(":music_player")
 include(":media")

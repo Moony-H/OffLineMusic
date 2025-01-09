@@ -1,6 +1,5 @@
-package com.moony.composeexoplayer
+package com.moony.offlinemusic
 
-import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,16 +11,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.moony.composeexoplayer.ui.theme.ComposeExoPlayerTheme
+import com.moony.offlinemusic.ui.theme.OffLineMusicTheme
 import com.moony.music_player.MusicScreen
-import com.moony.music_player.component.MusicPlayer
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            ComposeExoPlayerTheme {
+            OffLineMusicTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     MusicScreen(modifier = Modifier.padding(innerPadding))
                 }
@@ -41,7 +39,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    ComposeExoPlayerTheme {
+    OffLineMusicTheme {
         Greeting("Android")
     }
 }

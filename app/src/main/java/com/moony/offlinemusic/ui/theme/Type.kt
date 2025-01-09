@@ -1,4 +1,4 @@
-package com.moony.composeexoplayer.ui.theme
+package com.moony.offlinemusic.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
