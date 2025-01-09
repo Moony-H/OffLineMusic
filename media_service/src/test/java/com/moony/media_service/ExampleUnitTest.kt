@@ -1,4 +1,4 @@
-package com.moony.media
+package com.moony.media_service
 
 import org.junit.Test
 
