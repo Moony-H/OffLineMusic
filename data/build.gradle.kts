@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.kolown.data"
+    namespace = "com.moony.data"
     compileSdk = 34
 
     defaultConfig {
@@ -40,4 +40,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(project(":domain"))
 }

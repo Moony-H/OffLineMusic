@@ -1,4 +1,4 @@
-package com.kolown.data
+package com.moony.data
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.kolown.data.test", appContext.packageName)
+        assertEquals("com.moony.data.test", appContext.packageName)
     }
 }
