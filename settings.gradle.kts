@@ -23,3 +23,4 @@ rootProject.name = "OffLineMusic"
 include(":app")
 include(":music_player")
 include(":media_service")
+include(":data")

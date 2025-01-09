@@ -18,9 +18,7 @@ class MediaService : MediaLibraryService() {
             ExoPlayer.Builder(this).build(),
             mediaLibrarySessionCallback
         ).build()
-        mediaLibrarySession?.run {
 
-        }
     }
 
     override fun onGetSession(controllerInfo: MediaSession.ControllerInfo) =
