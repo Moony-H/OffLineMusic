@@ -5,7 +5,7 @@ import com.moony.domain.repository.MusicRepository
 
 class SearchMusicUseCase(private val musicRepository: MusicRepository) {
 
-    suspend operator fun invoke(query: String): List<Music> {
-        return musicRepository.searchMusicByName(query)
+    suspend operator fun invoke(query: String): Music? {
+        return musicRepository.searchMusicByTitle(query)
     }
 }

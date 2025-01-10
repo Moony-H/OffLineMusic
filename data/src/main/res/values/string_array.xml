@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="song_lyrics">
+        <item>@string/song_lyrics_1</item>
+        <item>@string/song_lyrics_2</item>
+        <item>@string/song_lyrics_3</item>
+    </string-array>
+</resources>
