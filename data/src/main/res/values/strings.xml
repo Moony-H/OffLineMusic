@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="song_lyrics">
+        <item>@string/song_lyrics_1</item>
+    </string-array>
+    <string name="song_lyrics_1">
+        初めまして,\n
+        私の名前はハンムンヒです。\n
+        android programmerで一年半ほど働いてた経験があります。\n
+        DIはhiltを使います。\n
+        clean architectureとMVVMを使うことができます。\n
+        composeもviewも好きです。\n
+        日本語は友人から習いました。\n
+        漢字は難しいですけど、\n
+        ひらがなとカタカナは\n
+        読めます。\n
+        よろしくお願いします。\n
+        \n
+        初めまして,\n
+        私の名前はハンムンヒです。\n
+        android programmerで一年半ほど働いてた経験があります。\n
+        DIはhiltを使います。\n
+        clean architectureとMVVMを使うことができます。\n
+        composeもviewも好きです。\n
+        日本語は友人から習いました。\n
+        漢字は難しいですけど、\n
+        ひらがなとカタカナは\n
+        読めます。\n
+        よろしくお願いします。\n
+    </string>
+
+    <string name="song_lyrics_2">
+        우리가 다시\n
+        시작하자는 건 아냐\n
+        그저 너의\n
+        남아있던 기억들이\n
+        떠올랐을 뿐이야\n
+        \n
+        정말 하루도\n
+        빠짐없이 너는\n
+        사랑한다 말해줬었지\n
+        잠들기 전에\n
+        또 눈 뜨자마자\n
+        말해주던 너\n
+        생각이 나 말해보는 거야\n
+        \n
+        예뻤어\n
+        날 바라봐 주던 그 눈빛\n
+        날 불러주던 그 목소리\n
+        다 다\n
+        그 모든 게 내겐\n
+        \n
+        예뻤어\n
+        더 바랄게 없는듯한 느낌\n
+        오직 너만이 주던 순간들\n
+        다 다\n
+        지났지만\n
+        넌 너무 예뻤어\n
+        \n
+        너도 이제는\n
+        나와의 기억이\n
+        추억이 되었을 거야\n
+        너에게는\n
+        어떤 말을 해도 다\n
+        지나간 일일 거야\n
+        \n
+        정말 한번도 빠짐없이 너는\n
+        나를 먼저 생각해줬어\n
+        아무 일 아니어도 미안해\n
+        고마워 해주던 너\n
+        생각이 나 말해보는 거야\n
+        \n
+        예뻤어\n
+        날 바라봐 주던 그 눈빛\n
+        날 불러주던 그 목소리\n
+        다 다\n
+        그 모든 게 내겐\n
+        \n
+        예뻤어\n
+        더 바랄게 없는듯한 느낌\n
+        오직 너만이 주던 순간들\n
+        다 다\n
+        지났지만\n
+        넌 너무 예뻤어\n
+        \n
+        아직도 가끔 네 생각이 나\n
+        어렵게 전화를 걸어볼까\n
+        생각이 들 때도 많지만\n
+        Baby I know it's already over\n
+        \n
+        아무리 원해도 너는 이제\n
+        이미 끝나버린 지난날의\n
+        한편의 영화였었단 걸\n
+        난 알아\n
+        \n
+        마지막\n
+        날 바라봐 주던 그 눈빛\n
+        잘 지내라던 그 목소리\n
+        다 다\n
+        그마저도 내겐\n
+        \n
+        예뻤어\n
+        내게 보여준 눈물까지\n
+        너와 가졌던 순간들은\n
+        다 다\n
+        지났지만\n
+        넌 너무 예뻤어\n
+    </string>
+    
+    <string name="song_lyrics_3">
+        Ay, ay, ay, ay (ooh)\n
+        Ooh, ooh, ooh, ooh (ooh)\n
+        Ay, ay\n
+        Ooh, ooh, ooh, ooh\n
+        Needless to say, I keep her in check\n
+        She was a bad-bad, nevertheless (yeah)\n
+        Callin\' it quits now, baby, I\'m a wreck (wreck)\n
+        Crash at my place, baby, you\'re a wreck (wreck)\n
+        Needless to say, I\'m keeping her in check\n
+        She was all bad-bad, nevertheless\n
+        Callin\' it quits now, baby, I\'m a wreck\n
+        Crash at my place, baby, you\'re a wreck\n
+        Thinkin\' in a bad way, losin\' your grip\n
+        Screamin\' at my face, baby, don\'t trip\n
+        Someone took a big L, don\'t know how that felt\n
+        Lookin\' at you sideways, party on tilt\n
+        Ooh-ooh-ooh\n
+        Some things you just can\'t refuse\n
+        She wanna ride me like a cruise\n
+        And I\'m not tryna lose\n
+        Then you\'re left in the dust\n
+        Unless I stuck by ya\n
+        You\'re the sunflower\n
+        I think your love would be too much\n
+        Or you\'ll be left in the dust\n
+        Unless I stuck by ya\n
+        You\'re the sunflower\n
+        You\'re the sunflower\n
+        Every time I\'m leavin\' on you (ooh)\n
+        You don\'t make it easy, no (no, no)\n
+        Wish I could be there for you\n
+        Give me a reason to, oh (oh)\n
+        Every time I\'m walkin\' out\n
+        I can hear you tellin\' me to turn around\n
+        Fightin\' for my trust and you won\'t back down\n
+        Even if we gotta risk it all right now, oh (now)\n
+        I know you\'re scared of the unknown (\'known)\n
+        You don\'t wanna be alone (alone)\n
+        I know I always come and go (and go)\n
+        But it\'s out of my control\n
+        And you\'ll be left in the dust\n
+        Unless I stuck by ya\n
+        You\'re the sunflower\n
+        I think your love would be too much\n
+        Or you\'ll be left in the dust\n
+        Unless I stuck by ya\n
+        You\'re the sunflower\n
+        You\'re the sunflower (yeah)\n
+    </string>
+
+</resources>
