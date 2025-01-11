@@ -48,5 +48,5 @@ dependencies {
     ksp(libs.hilt.android.compiler)
 
 
-    implementation(project(":domain"))
+    api(project(":domain"))
 }

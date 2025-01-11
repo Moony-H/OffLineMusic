@@ -1,18 +1,27 @@
 package com.moony.media_service
 
 import android.content.Intent
+import android.util.Log
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.session.MediaLibraryService
 import androidx.media3.session.MediaSession
+import com.moony.domain.repository.MusicRepository
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MediaService : MediaLibraryService() {
 
     private var mediaLibrarySession: MediaLibrarySession? = null
-    private val mediaLibrarySessionCallback = object : MediaLibrarySession.Callback {    }
+    private val mediaLibrarySessionCallback = object : MediaLibrarySession.Callback {}
+
+    @Inject
+    lateinit var musicRepository: MusicRepository
 
     override fun onCreate() {
         super.onCreate()
+        Log.e("test","service created")
         mediaLibrarySession = MediaLibrarySession.Builder(
             this,
             ExoPlayer.Builder(this).build(),
@@ -44,7 +53,6 @@ class MediaService : MediaLibraryService() {
         super.onDestroy()
 
     }
-
 
 
 }

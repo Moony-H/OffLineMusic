@@ -65,4 +65,5 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
 
     implementation(project(":music_player"))
+    implementation(project(":media_service"))
 }
