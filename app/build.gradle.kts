@@ -64,6 +64,6 @@ dependencies {
     ksp(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 
-    implementation(project(":music_player"))
-    implementation(project(":media_service"))
+    implementation(project(":feature:music_player"))
+    implementation(project(":feature:media_service"))
 }

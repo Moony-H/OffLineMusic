@@ -21,7 +21,10 @@ dependencyResolutionManagement {
 
 rootProject.name = "OffLineMusic"
 include(":app")
-include(":music_player")
-include(":media_service")
-include(":data")
-include(":domain")
+include(":core")
+include(":feature")
+include(":core:data")
+include(":core:domain")
+include(":feature:music_player")
+include(":feature:media_service")
+

@@ -24,6 +24,7 @@ fun MusicPlayer(modifier: Modifier = Modifier) {
     val musicUri by remember { mutableStateOf("https://storage.googleapis.com/exoplayer-test-media-0/play.mp3") }
     player.setMediaItem(MediaItem.fromUri(musicUri))
 
+
     player.prepare()
     player.play()
 
