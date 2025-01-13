@@ -21,12 +21,6 @@ import androidx.media3.ui.PlayerView
 fun MusicPlayer(modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val player = remember { ExoPlayer.Builder(context).build() }
-    val musicUri by remember { mutableStateOf("https://storage.googleapis.com/exoplayer-test-media-0/play.mp3") }
-    player.setMediaItem(MediaItem.fromUri(musicUri))
-
-
-    player.prepare()
-    player.play()
 
 
 //    AndroidView(

@@ -28,3 +28,4 @@ include(":core:domain")
 include(":feature:music_player")
 include(":feature:media_service")
 
+include(":core:common")

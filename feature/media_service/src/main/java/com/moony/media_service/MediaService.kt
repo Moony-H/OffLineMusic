@@ -21,7 +21,6 @@ class MediaService : MediaLibraryService() {
 
     override fun onCreate() {
         super.onCreate()
-        Log.e("test","service created")
         mediaLibrarySession = MediaLibrarySession.Builder(
             this,
             ExoPlayer.Builder(this).build(),
