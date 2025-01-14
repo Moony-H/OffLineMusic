@@ -1,4 +1,4 @@
-package com.moony.common
+package com.moony.common.media
 
 import androidx.compose.runtime.compositionLocalOf
 import androidx.media3.session.MediaController

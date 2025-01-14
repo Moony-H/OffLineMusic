@@ -53,5 +53,6 @@ dependencies {
     ksp(libs.hilt.android.compiler)
 
     implementation(project(":core:data"))
+    implementation(project(":core:common"))
 
 }

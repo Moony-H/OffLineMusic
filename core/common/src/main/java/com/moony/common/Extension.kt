@@ -1,4 +1,4 @@
-package com.moony.media_service
+package com.moony.common
 
 
 

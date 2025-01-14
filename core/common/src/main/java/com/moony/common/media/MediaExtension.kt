@@ -1,11 +1,10 @@
-package com.moony.media_service.mediacontroller
+package com.moony.common.media
 
-import android.media.session.MediaController
 import androidx.core.net.toUri
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import com.moony.domain.model.Music
-import com.moony.media_service.toStringOrEmpty
+import com.moony.common.toStringOrEmpty
 
 fun Music.toMediaItem() =
     MediaItem.Builder().setMediaId(id.toString()).setUri(musicUrl).setMediaMetadata(
