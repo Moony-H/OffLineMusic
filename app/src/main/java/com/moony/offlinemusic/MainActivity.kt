@@ -1,5 +1,8 @@
 package com.moony.offlinemusic
 
+import android.content.ComponentName
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -15,10 +18,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.media3.session.MediaBrowser
 import androidx.media3.session.MediaController
+import androidx.media3.session.SessionToken
 import com.google.common.util.concurrent.ListenableFuture
+import com.google.common.util.concurrent.MoreExecutors
 import com.moony.common.media.LocalMediaBrowser
 import com.moony.common.media.LocalMediaController
 import com.moony.common.media.LocalMediaViewModel
+import com.moony.media_service.MediaService
 import com.moony.offlinemusic.ui.theme.OffLineMusicTheme
 import com.moony.music_player.MusicScreen
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,22 +33,15 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    private var mediaController by mutableStateOf<MediaController?>(null)
-    private var mediaBrowser by mutableStateOf<MediaBrowser?>(null)
-
     private val viewModel: MainViewModel by viewModels()
-
-    private lateinit var mediaControllerFuture: ListenableFuture<MediaController>
-    private lateinit var mediaBrowserFuture: ListenableFuture<MediaBrowser>
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        startService()
         enableEdgeToEdge()
         setContent {
             OffLineMusicTheme {
                 CompositionLocalProvider(
-                    LocalMediaController.provides(mediaController),
-                    LocalMediaBrowser.provides(mediaBrowser),
+                    LocalMediaViewModel.provides(viewModel)
                 ) {
                     MainScreen()
                 }
@@ -50,11 +49,17 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+    }
+
     override fun onStop() {
         super.onStop()
-        mediaController?.release()
-        mediaBrowser?.release()
-        MediaController.releaseFuture(mediaControllerFuture)
-        MediaBrowser.releaseFuture(mediaBrowserFuture)
+    }
+
+    private fun startService() {
+        val sessionToken =
+            SessionToken(applicationContext, ComponentName(this, MediaService::class.java))
+        MediaController.Builder(applicationContext, sessionToken).buildAsync()
     }
 }

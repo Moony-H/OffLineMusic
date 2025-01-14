@@ -14,18 +14,11 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MediaService : MediaLibraryService() {
 
-    private val mediaLibrarySessionCallback = object : MediaLibrarySession.Callback {}
-
     @Inject
     lateinit var musicRepository: MusicRepository
 
     @Inject
     lateinit var mediaLibrarySession: MediaLibrarySession
-
-    override fun onCreate() {
-        super.onCreate()
-
-    }
 
     override fun onGetSession(controllerInfo: MediaSession.ControllerInfo) =
         mediaLibrarySession
@@ -41,11 +34,16 @@ class MediaService : MediaLibraryService() {
         }
     }
 
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        return super.onStartCommand(intent, flags, startId)
+    }
+
     override fun onDestroy() {
         mediaLibrarySession.run {
             player.release()
             release()
         }
+        Log.e("test", "service destroyed")
         super.onDestroy()
 
     }

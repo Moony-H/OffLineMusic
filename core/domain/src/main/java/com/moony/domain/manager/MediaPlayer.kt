@@ -9,6 +9,7 @@ interface MediaPlayer {
     val currentMusicTimeLinePositionFlow: StateFlow<Long>
     val durationFlow: StateFlow<Long>
     val currentMusicFlow: StateFlow<Music?>
+    val musicCount:Int
     fun play()
     fun pause()
     fun next()

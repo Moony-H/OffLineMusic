@@ -1,6 +1,8 @@
 package com.moony.media_service
 
+import android.util.Log
 import androidx.media3.common.MediaItem
+import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
 import androidx.media3.common.Timeline
 import com.moony.domain.manager.MediaPlayer
@@ -15,8 +17,9 @@ class MediaPlayerImpl @Inject constructor(
     override val currentMusicTimeLinePositionFlow = MutableStateFlow(0L)
     override val durationFlow = MutableStateFlow(0L)
     override val currentMusicFlow = MutableStateFlow<Music?>(null)
+    override val musicCount: Int
+        get() = player.mediaItemCount
 
-    //toMusic 파일 옮기기(아마 여기 모듈로?)
     init {
         player.addListener(object : Player.Listener {
             override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
@@ -36,10 +39,17 @@ class MediaPlayerImpl @Inject constructor(
                 isPlayingFlow.value = isPlaying
             }
 
+            override fun onPlaybackStateChanged(playbackState: Int) {
+                super.onPlaybackStateChanged(playbackState)
+                Log.e("test", "changed state: $playbackState")
+            }
+
         })
     }
 
     override fun play() {
+        if (player.playbackState == Player.STATE_IDLE)
+            player.prepare()
         player.play()
     }
 

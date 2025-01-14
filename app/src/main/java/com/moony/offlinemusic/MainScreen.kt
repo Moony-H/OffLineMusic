@@ -31,9 +31,4 @@ fun MainScreen(modifier: Modifier = Modifier) {
     ) { innerPadding ->
         MusicScreen(modifier = Modifier.padding(innerPadding))
     }
-    LaunchedEffect(Unit) {
-//        mainViewModel.snackBarEventFlow.collect {
-//            snackBarHostState.showSnackBarWithEvent(it)
-//        }
-    }
 }
