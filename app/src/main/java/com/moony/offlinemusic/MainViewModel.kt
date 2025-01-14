@@ -1,19 +1,17 @@
 package com.moony.offlinemusic
 
-import android.content.ComponentName
-import android.content.Context
 import androidx.lifecycle.ViewModel
-import androidx.media3.session.MediaController
-import androidx.media3.session.SessionToken
-import com.google.common.util.concurrent.ListenableFuture
-import com.google.common.util.concurrent.MoreExecutors
-import com.moony.media_service.MediaService
+import com.moony.common.MediaViewModel
+import com.moony.domain.manager.MediaPlayer
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
+import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel : ViewModel() {
-
-
-
+class MainViewModel @Inject constructor(
+    private val mediaPlayer: MediaPlayer
+) : MediaViewModel(), MediaPlayer by mediaPlayer {
+    override val isPlaying = mediaPlayer.isPlayingFlow
+    override val currentMusic = mediaPlayer.currentMusicFlow
+    override val duration = mediaPlayer.durationFlow
+    override val currentPosition = mediaPlayer.currentMusicTimeLinePositionFlow
 }

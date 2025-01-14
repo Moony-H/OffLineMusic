@@ -1,5 +1,6 @@
-package com.moony.common.media
+package com.moony.media_service
 
+import android.os.Bundle
 import androidx.core.net.toUri
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
@@ -9,6 +10,9 @@ import com.moony.common.toStringOrEmpty
 fun Music.toMediaItem() =
     MediaItem.Builder().setMediaId(id.toString()).setUri(musicUrl).setMediaMetadata(
         MediaMetadata.Builder().setTitle(title).setArtworkUri(imageUrl.toUri()).setArtist(artist)
+            .setExtras(
+                Bundle().apply { putString(Music.LYRICS_KEY, lyrics) }
+            )
             .build()
     ).build()
 

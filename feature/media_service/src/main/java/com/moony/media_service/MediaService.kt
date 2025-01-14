@@ -12,21 +12,18 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-internal class MediaService : MediaLibraryService() {
+class MediaService : MediaLibraryService() {
 
-    private var mediaLibrarySession: MediaLibrarySession? = null
     private val mediaLibrarySessionCallback = object : MediaLibrarySession.Callback {}
 
     @Inject
     lateinit var musicRepository: MusicRepository
 
+    @Inject
+    lateinit var mediaLibrarySession: MediaLibrarySession
+
     override fun onCreate() {
         super.onCreate()
-        mediaLibrarySession = MediaLibrarySession.Builder(
-            this,
-            ExoPlayer.Builder(this).build(),
-            mediaLibrarySessionCallback
-        ).build()
 
     }
 
@@ -34,7 +31,7 @@ internal class MediaService : MediaLibraryService() {
         mediaLibrarySession
 
     override fun onTaskRemoved(rootIntent: Intent?) {
-        val player = mediaLibrarySession?.player!!
+        val player = mediaLibrarySession.player
         if (!player.playWhenReady
             || player.mediaItemCount == 0
             || (player.playbackState == Player.STATE_ENDED
@@ -45,10 +42,9 @@ internal class MediaService : MediaLibraryService() {
     }
 
     override fun onDestroy() {
-        mediaLibrarySession?.run {
+        mediaLibrarySession.run {
             player.release()
             release()
-            mediaLibrarySession = null
         }
         super.onDestroy()
 
