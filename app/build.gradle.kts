@@ -60,6 +60,10 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+
+    //media3
+    implementation(libs.androidx.media3.session)
+
     // hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)

@@ -6,12 +6,13 @@ import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.session.MediaLibraryService
 import androidx.media3.session.MediaSession
+import androidx.media3.session.legacy.PlaybackStateCompat
 import com.moony.domain.repository.MusicRepository
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MediaService : MediaLibraryService() {
+internal class MediaService : MediaLibraryService() {
 
     private var mediaLibrarySession: MediaLibrarySession? = null
     private val mediaLibrarySessionCallback = object : MediaLibrarySession.Callback {}

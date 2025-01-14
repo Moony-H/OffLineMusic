@@ -52,6 +52,7 @@ internal class DummyGenerator @Inject constructor(@ApplicationContext private va
         val resultTitle = songTitleList.find { it in title }
         return resultTitle?.let {
             MusicDTO(
+                id = Random.nextLong(),
                 title = it,
                 musicUrl = dummySongUrl,
                 getRandom(artistNameList),
@@ -67,6 +68,7 @@ internal class DummyGenerator @Inject constructor(@ApplicationContext private va
 
 
     private fun getRandomMusicDTO() = MusicDTO(
+        id = Random.nextLong(),
         title = getRandom(songTitleList),
         musicUrl = dummySongUrl,
         artist = getRandom(artistNameList),
