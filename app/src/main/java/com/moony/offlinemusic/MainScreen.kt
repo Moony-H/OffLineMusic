@@ -25,12 +25,15 @@ fun MainScreen() {
             SnackbarHost(snackBarHostState)
         }
     ) { innerPadding ->
-        Box(
-            modifier = Modifier.padding(innerPadding).fillMaxSize().background(Color.Cyan),
-            contentAlignment = Alignment.Center,
-        ) {
-            SlideUpLayout()
-        }
+        SlideUpLayout(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding),
+            slideContent = {
+
+            },
+            backgroundContent = {}
+        )
 
     }
 }

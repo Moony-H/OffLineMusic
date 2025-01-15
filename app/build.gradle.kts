@@ -72,8 +72,11 @@ dependencies {
     // paging3
     implementation(libs.androidx.paging.compose)
 
-    implementation(project(":feature:music_player"))
-    implementation(project(":feature:media_service"))
     implementation(project(":core:data"))
     implementation(project(":core:common"))
+    implementation(project(":core:resource"))
+    implementation(project(":feature:music_player"))
+    implementation(project(":feature:media_service"))
+
+
 }
