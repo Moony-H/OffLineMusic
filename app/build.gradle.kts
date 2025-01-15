@@ -69,6 +69,9 @@ dependencies {
     ksp(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 
+    // paging3
+    implementation(libs.androidx.paging.compose)
+
     implementation(project(":feature:music_player"))
     implementation(project(":feature:media_service"))
     implementation(project(":core:data"))

@@ -58,6 +58,10 @@ dependencies {
     ksp(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 
+    //paging
+    implementation(libs.androidx.paging.runtime)
+
+
     implementation(project(":core:data"))
 
 }

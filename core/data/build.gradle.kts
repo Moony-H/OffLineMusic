@@ -47,6 +47,9 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
 
+    //paging3
+    implementation(libs.androidx.paging.runtime)
+
 
     api(project(":core:domain"))
 }
