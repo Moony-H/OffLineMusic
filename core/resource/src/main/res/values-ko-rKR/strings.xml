@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--content description-->
+    <string name="content_equalizer">이퀄라이저</string>
+    <string name="content_download">다운로드</string>
+    <string name="content_menu">메뉴</string>
+    <string name="content_heart">하트</string>
+    <string name="content_repeat_all">전곡 반복</string>
+    <string name="content_repeat_one">한곡 반복</string>
+    <string name="content_repeat_none">반복 없음</string>
+    <string name="content_shuffle">셔플</string>
+    <string name="content_play">재생</string>
+    <string name="content_pause">멈춤</string>
+    <string name="content_next">다음</string>
+    <string name="content_previous">이전</string>
+    <string name="content_search">검색</string>
+    <string name="content_lyrics">가사</string>
+    <string name="content_playlist">플레이리스트</string>
+    <string name="content_library">라이브러리</string>
+
+
+    <!--title-->
+    <string name="title">LINE MUSIC</string>
+
+    <!--button-->
+    <string name="button_today">today</string>
+    <string name="button_library">라이브러리</string>
+    <string name="button_search">검색</string>
+</resources>

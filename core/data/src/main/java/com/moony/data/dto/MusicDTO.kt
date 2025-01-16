@@ -1,5 +1,6 @@
 package com.moony.data.dto
 
+import com.moony.domain.model.Lyrics
 import com.moony.domain.model.Music
 
 internal data class MusicDTO(
@@ -9,6 +10,7 @@ internal data class MusicDTO(
     val artist: String,
     val imageUrl: String,
     val lyrics: String,
+    val lyricsTimingList: List<Long>
 )
 
 internal fun MusicDTO.toMusic() = Music(
@@ -17,5 +19,5 @@ internal fun MusicDTO.toMusic() = Music(
     musicUrl = musicUrl,
     artist = artist,
     imageUrl = imageUrl,
-    lyrics = lyrics,
+    lyrics = Lyrics(lyrics.split("\n"), lyricsTimingList),
 )

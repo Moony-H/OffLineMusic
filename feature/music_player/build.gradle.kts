@@ -57,6 +57,10 @@ dependencies {
     ksp(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 
+
+
+
+
     implementation(project(":core:data"))
     implementation(project(":core:common"))
     implementation(project(":core:resource"))

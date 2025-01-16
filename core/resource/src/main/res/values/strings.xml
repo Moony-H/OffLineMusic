@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--content description-->
+    <string name="content_equalizer">イコライザー</string>
+    <string name="content_download">ダウンロード</string>
+    <string name="content_menu">メニュー</string>
+    <string name="content_heart">ハート</string>
+    <string name="content_repeat_all">全曲リピート</string>
+    <string name="content_repeat_one">１曲リピート</string>
+    <string name="content_repeat_none">リピートオフ</string>
+    <string name="content_shuffle">シャッフル</string>
+    <string name="content_play">再生</string>
+    <string name="content_pause">停止</string>
+    <string name="content_next">次へ</string>
+    <string name="content_previous">前へ</string>
+    <string name="content_search">検索</string>
+    <string name="content_lyrics">歌詞</string>
+    <string name="content_playlist">プレイリスト</string>
+    <string name="content_library">ライブラリ</string>
+
+    <!--title-->
+    <string name="title">LINE MUSIC</string>
+
+    <!--button-->
+    <string name="button_today">today</string>
+    <string name="button_library">ライブラリ</string>
+    <string name="button_search">検索</string>
+
+</resources>

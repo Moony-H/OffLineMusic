@@ -34,7 +34,7 @@ fun SlideUpLayout(
     modifier: Modifier = Modifier,
     bottomOffsetPx: Float = with(LocalDensity.current) { 80.dp.toPx() },
     topOffsetPx: Float = 0f,
-    flingThreshold: Float = with(LocalDensity.current) { 2500.dp.toPx() },
+    flingThreshold: Float = with(LocalDensity.current) { 2000.dp.toPx() },
     onReachToTop: () -> Unit = {},
     onReachToBottom: () -> Unit = {},
     onDragProgressChanged: (progress: Float) -> Unit = {},

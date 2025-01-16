@@ -2,6 +2,7 @@ package com.moony.data
 
 import android.content.Context
 import com.moony.data.dto.MusicDTO
+import com.moony.domain.model.Lyrics
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import kotlin.random.Random
@@ -50,6 +51,11 @@ internal class DummyGenerator @Inject constructor(@ApplicationContext private va
 
     fun searchMusicByTitle(title: String): MusicDTO? {
         val resultTitle = songTitleList.find { it in title }
+        val lyricsString = getRandom(lyricsList)
+        val lyricsStringList = lyricsString.split("\n")
+        val timingList = List(lyricsStringList.size) { index ->
+            index * (60000L / lyricsStringList.size)
+        }
         return resultTitle?.let {
             MusicDTO(
                 id = Random.nextLong(),
@@ -57,7 +63,8 @@ internal class DummyGenerator @Inject constructor(@ApplicationContext private va
                 musicUrl = dummySongUrl,
                 getRandom(artistNameList),
                 getRandom(dummyImageUrlList),
-                getRandom(lyricsList)
+                getRandom(lyricsList),
+                lyricsTimingList = timingList
             )
         }
     }
@@ -67,14 +74,22 @@ internal class DummyGenerator @Inject constructor(@ApplicationContext private va
     }.toList()
 
 
-    private fun getRandomMusicDTO() = MusicDTO(
-        id = Random.nextLong(),
-        title = getRandom(songTitleList),
-        musicUrl = dummySongUrl,
-        artist = getRandom(artistNameList),
-        imageUrl = getRandom(dummyImageUrlList),
-        lyrics = getRandom(lyricsList),
-    )
+    private fun getRandomMusicDTO(): MusicDTO {
+        val lyricsString = getRandom(lyricsList)
+        val lyricsStringList = lyricsString.split("\n")
+        val timingList = List(lyricsStringList.size) { index ->
+            index * (60000L / lyricsStringList.size)
+        }
+        return MusicDTO(
+            id = Random.nextLong(),
+            title = getRandom(songTitleList),
+            musicUrl = dummySongUrl,
+            artist = getRandom(artistNameList),
+            imageUrl = getRandom(dummyImageUrlList),
+            lyrics = getRandom(lyricsList),
+            lyricsTimingList = timingList
+        )
+    }
 
     private fun <T> getRandomList(list: List<T>, length: Int = -1) =
         list.shuffled().subList(0, if (length == -1) list.size else length)

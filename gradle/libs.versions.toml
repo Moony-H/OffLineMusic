@@ -66,4 +66,3 @@ jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrai
 hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hiltAndroid" }
 
 ksp = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
-

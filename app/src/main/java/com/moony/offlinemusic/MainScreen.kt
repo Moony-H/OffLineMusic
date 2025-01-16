@@ -3,6 +3,7 @@ package com.moony.offlinemusic
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -13,6 +14,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.moony.common.SlideUpLayout
+import com.moony.music_player.MusicScreen
+import com.moony.music_player.component.TopBar
 
 
 @Composable
@@ -30,7 +33,7 @@ fun MainScreen() {
                 .fillMaxSize()
                 .padding(innerPadding),
             slideContent = {
-
+                MusicScreen(modifier = Modifier.fillMaxSize())
             },
             backgroundContent = {}
         )

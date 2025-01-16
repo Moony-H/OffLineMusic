@@ -41,6 +41,7 @@ class MediaPlayerImpl @Inject constructor(
                 }
             }
         }
+
     override val durationFlow = MutableStateFlow(0L)
     override val currentMusicFlow = MutableStateFlow<Music?>(null)
     override val errorFlow = MutableSharedFlow<PlayerError>(

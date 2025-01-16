@@ -12,10 +12,17 @@ import com.moony.domain.repository.MusicRepository
 import com.moony.domain.type.SnackBarEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -34,16 +41,32 @@ class MainViewModel @Inject constructor(
     )
     val snackBarFlow = _snackBarFlow.asSharedFlow()
 
+    @OptIn(ExperimentalCoroutinesApi::class)
+    override val currentLyricsPartFlow: StateFlow<String> =
+        currentMusicFlow.filterNotNull().flatMapLatest { music ->
+            currentPositionFlow.filterNotNull()
+                .map { position -> music.lyrics.getLyricsPartByCurrentMillis(position) }
+        }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), "")
+
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    override val prevLyricsPartFlow: StateFlow<String> =
+        currentMusicFlow.filterNotNull().flatMapLatest { music ->
+            currentPositionFlow.map { position ->
+                music.lyrics.getPrevLyricsPartByCurrentMillis(
+                    position
+                ) ?: ""
+            }
+        }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), "")
 
     override val musicPagingFlow: Flow<PagingData<Music>> = musicPager.flow
 
     //test용
     init {
-        if(musicCountFlow.value == 0){
+        if (musicCountFlow.value == 0) {
             viewModelScope.launch(Dispatchers.IO) {
                 val result = musicRepository.getPlayList()
                 result.onSuccess {
-                    Log.e("test", "add 10 music")
                     withContext(Dispatchers.Main) { addMusics(it) }
                 }.onFailure {
                     postSnackBarEvent(SnackBarEvent.Message("네트워크 오류가 발생하였습니다", null))

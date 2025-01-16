@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--icon size-->
+    <dimen name="icon_eq_size">24dp</dimen>
+    <dimen name="icon_download_size">24dp</dimen>
+    <dimen name="icon_menu_size">24dp</dimen>
+    <dimen name="icon_heart_size">24dp</dimen>
+    <dimen name="icon_repeat_size">24dp</dimen>
+    <dimen name="icon_shuffle_size">24dp</dimen>
+    <dimen name="icon_previous_size">36dp</dimen>
+    <dimen name="icon_next_size">36dp</dimen>
+    <dimen name="icon_play_size">48dp</dimen>
+    <dimen name="icon_pause_size">48dp</dimen>
+    <dimen name="icon_lyrics_size">24dp</dimen>
+    <dimen name="icon_playlist_size">24dp</dimen>
+
+    <!--screen padding-->
+    <dimen name="screen_padding_horizontal">16dp</dimen>
+    <dimen name="screen_padding_vertical">12dp</dimen>
+
+    <!--space-->
+    <dimen name="spacer_icon_horizontal">20dp</dimen>
+
+
+
+</resources>
