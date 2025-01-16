@@ -30,3 +30,5 @@ include(":feature:media_service")
 
 include(":core:common")
 include(":core:resource")
+include(":feature:home")
+include(":feature:search")
