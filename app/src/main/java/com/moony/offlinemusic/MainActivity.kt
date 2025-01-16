@@ -1,32 +1,23 @@
 package com.moony.offlinemusic
 
 import android.content.ComponentName
-import android.content.Intent
-import android.os.Build
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
-import androidx.media3.session.MediaBrowser
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.media3.session.MediaController
 import androidx.media3.session.SessionToken
-import com.google.common.util.concurrent.ListenableFuture
-import com.google.common.util.concurrent.MoreExecutors
-import com.moony.common.media.LocalMediaBrowser
-import com.moony.common.media.LocalMediaController
 import com.moony.common.media.LocalMediaViewModel
 import com.moony.media_service.MediaService
 import com.moony.offlinemusic.ui.theme.OffLineMusicTheme
-import com.moony.music_player.MusicScreen
+import com.moony.resource.BackgroundBlack
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -37,7 +28,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         startService()
-        enableEdgeToEdge()
+        //setSystemBars(isDarkModeEnabled())
         setContent {
             OffLineMusicTheme {
                 CompositionLocalProvider(
@@ -61,5 +52,24 @@ class MainActivity : ComponentActivity() {
         val sessionToken =
             SessionToken(applicationContext, ComponentName(this, MediaService::class.java))
         MediaController.Builder(applicationContext, sessionToken).buildAsync()
+    }
+
+    private fun setSystemBars(isDarkMode: Boolean) {
+        val systemBarStyle = if (!isDarkMode) {
+            SystemBarStyle.light(
+                BackgroundBlack.toArgb(),
+                Color.White.toArgb()
+            )
+        } else {
+            SystemBarStyle.dark(
+                BackgroundBlack.toArgb()
+            )
+        }
+        enableEdgeToEdge(statusBarStyle = systemBarStyle, navigationBarStyle = systemBarStyle)
+    }
+
+    private fun isDarkModeEnabled(): Boolean {
+        val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        return currentNightMode == Configuration.UI_MODE_NIGHT_YES
     }
 }

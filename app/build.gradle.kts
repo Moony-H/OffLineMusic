@@ -77,6 +77,8 @@ dependencies {
     // paging3
     implementation(libs.androidx.paging.compose)
 
+    implementation(libs.accompanist.systemuicontroller)
+
     implementation(project(":core:data"))
     implementation(project(":core:common"))
     implementation(project(":core:resource"))

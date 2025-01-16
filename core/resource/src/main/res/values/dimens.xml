@@ -17,11 +17,14 @@
 
     <!--screen padding-->
     <dimen name="screen_padding_horizontal">16dp</dimen>
-    <dimen name="screen_padding_vertical">12dp</dimen>
+    <dimen name="screen_padding_vertical">16dp</dimen>
 
     <!--space-->
     <dimen name="spacer_icon_horizontal">20dp</dimen>
 
+    <!--other size-->
+    <dimen name="max_size_music_image">400dp</dimen>
+    <dimen name="min_size_music_image">200dp</dimen>
 
 
 </resources>

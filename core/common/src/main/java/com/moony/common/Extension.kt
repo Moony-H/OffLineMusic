@@ -12,9 +12,3 @@ import androidx.lifecycle.ViewModel
 
 
 fun Any?.toStringOrEmpty(): String = this?.toString() ?: ""
-
-inline val Int.dp: Dp
-    @Composable get() = with(LocalDensity.current) { this@dp.toDp() }
-
-inline val Dp.px: Float
-    @Composable get() = with(LocalDensity.current) { this@px.toPx() }

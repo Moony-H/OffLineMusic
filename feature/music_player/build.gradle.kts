@@ -57,8 +57,7 @@ dependencies {
     ksp(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 
-
-
+    implementation(libs.glide.compose)
 
 
     implementation(project(":core:data"))

@@ -17,6 +17,7 @@
     <string name="content_lyrics">歌詞</string>
     <string name="content_playlist">プレイリスト</string>
     <string name="content_library">ライブラリ</string>
+    <string name="content_alum_image">アルバムイメジ</string>
 
     <!--title-->
     <string name="title">LINE MUSIC</string>

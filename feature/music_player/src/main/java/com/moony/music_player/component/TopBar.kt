@@ -19,17 +19,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.content.ContextCompat
+import com.moony.resource.MusicIconGray
 import com.moony.resource.R
 
 @Composable
 fun TopBar(modifier: Modifier) {
     Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(
-                horizontal = dimensionResource(R.dimen.screen_padding_horizontal),
-                vertical = dimensionResource(R.dimen.screen_padding_vertical)
-            ),
+        modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
     ) {
         IconButton(
@@ -40,7 +36,8 @@ fun TopBar(modifier: Modifier) {
         ) {
             Icon(
                 imageVector = ImageVector.vectorResource(R.drawable.icon_tune),
-                contentDescription = stringResource(R.string.content_equalizer)
+                contentDescription = stringResource(R.string.content_equalizer),
+                tint = MusicIconGray
             )
         }
         Spacer(modifier = Modifier.weight(1f))
@@ -49,10 +46,12 @@ fun TopBar(modifier: Modifier) {
             onClick = {
 
             },
-        ) {
+
+            ) {
             Icon(
                 imageVector = ImageVector.vectorResource(R.drawable.icon_download),
-                contentDescription = stringResource(R.string.content_download)
+                contentDescription = stringResource(R.string.content_download),
+                tint = MusicIconGray
             )
 
         }
@@ -65,7 +64,8 @@ fun TopBar(modifier: Modifier) {
         ) {
             Icon(
                 imageVector = ImageVector.vectorResource(R.drawable.icon_more_horiz),
-                contentDescription = stringResource(R.string.content_menu)
+                contentDescription = stringResource(R.string.content_menu),
+                tint = MusicIconGray
             )
 
         }

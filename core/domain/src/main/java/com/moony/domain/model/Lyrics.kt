@@ -12,8 +12,8 @@ data class Lyrics(
         return lyricsList[getIndexFromCurrentMillis(currentMillis)]
     }
 
-    fun getPrevLyricsPartByCurrentMillis(currentMillis: Long): String? {
-        return lyricsList.getOrNull(getIndexFromCurrentMillis(currentMillis))
+    fun getNextLyricsPartByCurrentMillis(currentMillis: Long): String? {
+        return lyricsList.getOrNull(getIndexFromCurrentMillis(currentMillis) + 1)
     }
 
     //이분탐색

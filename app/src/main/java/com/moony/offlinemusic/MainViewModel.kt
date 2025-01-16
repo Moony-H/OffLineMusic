@@ -1,11 +1,9 @@
 package com.moony.offlinemusic
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingData
 import com.moony.common.MediaViewModel
-import com.moony.data.paging.MusicPagingSource
 import com.moony.domain.manager.MediaPlayer
 import com.moony.domain.model.Music
 import com.moony.domain.repository.MusicRepository
@@ -50,10 +48,10 @@ class MainViewModel @Inject constructor(
 
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    override val prevLyricsPartFlow: StateFlow<String> =
+    override val nextLyricsPartFlow: StateFlow<String> =
         currentMusicFlow.filterNotNull().flatMapLatest { music ->
             currentPositionFlow.map { position ->
-                music.lyrics.getPrevLyricsPartByCurrentMillis(
+                music.lyrics.getNextLyricsPartByCurrentMillis(
                     position
                 ) ?: ""
             }
