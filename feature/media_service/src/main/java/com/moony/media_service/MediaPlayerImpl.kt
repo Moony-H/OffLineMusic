@@ -4,25 +4,18 @@ import android.util.Log
 import androidx.media3.common.MediaItem
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
-import androidx.media3.common.Timeline
 import com.moony.domain.manager.MediaPlayer
 import com.moony.domain.model.Music
 import com.moony.domain.type.PlayerError
+import com.moony.domain.type.RepeatMode
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.isActive
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.channelFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flattenMerge
 import kotlinx.coroutines.isActive
 import javax.inject.Inject
 
@@ -30,20 +23,21 @@ class MediaPlayerImpl @Inject constructor(
     private val player: Player
 ) : MediaPlayer {
     override val isPlayingFlow = MutableStateFlow(false)
+    override val currentMusicFlow = MutableStateFlow<Music?>(null)
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    override val currentPositionFlow =
-        isPlayingFlow.filter { it }.flatMapLatest {
-            flow {
-                while (isPlayingFlow.value) {
+    override val currentPositionFlow = currentMusicFlow
+        .combine(isPlayingFlow) { currentMusic, isPlaying ->
+            channelFlow {
+                while (isPlaying && coroutineContext.isActive) {
                     delay(250L)
-                    emit(player.currentPosition)
+                    send(player.currentPosition)
                 }
             }
-        }
+        }.flattenMerge() //빠르게 변경되면 이전 flow가 취소되지 않은 상태에서 두 flow가 병렬로 실행될 수 있음.
+    //그래서 flattenMerge로 병합함.
 
     override val durationFlow = MutableStateFlow(0L)
-    override val currentMusicFlow = MutableStateFlow<Music?>(null)
     override val errorFlow = MutableSharedFlow<PlayerError>(
         replay = 1,
         extraBufferCapacity = 1,
@@ -52,9 +46,12 @@ class MediaPlayerImpl @Inject constructor(
 
     override val nowMusicItemIndexFlow = MutableStateFlow(player.currentMediaItemIndex)
     override val musicCountFlow = MutableStateFlow(0)
+    override val repeatModeFlow = MutableStateFlow(RepeatMode.NONE)
+    override val isShuffleFlow = MutableStateFlow(false)
 
     init {
         player.addListener(object : Player.Listener {
+
             override fun onEvents(player: Player, events: Player.Events) {
                 super.onEvents(player, events)
             }
@@ -62,13 +59,13 @@ class MediaPlayerImpl @Inject constructor(
             override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
                 super.onMediaItemTransition(mediaItem, reason)
                 currentMusicFlow.value = mediaItem?.toMusic()
-                durationFlow.value = player.duration
             }
 
 
             override fun onIsPlayingChanged(isPlaying: Boolean) {
                 super.onIsPlayingChanged(isPlaying)
                 isPlayingFlow.value = isPlaying
+                durationFlow.value = player.duration
             }
 
             override fun onPlayerError(error: PlaybackException) {
@@ -78,6 +75,16 @@ class MediaPlayerImpl @Inject constructor(
 
             override fun onPlaybackStateChanged(playbackState: Int) {
                 super.onPlaybackStateChanged(playbackState)
+            }
+
+            override fun onRepeatModeChanged(repeatMode: Int) {
+                super.onRepeatModeChanged(repeatMode)
+                repeatModeFlow.value = getRepeatModeFromMedia(repeatMode)
+            }
+
+            override fun onShuffleModeEnabledChanged(shuffleModeEnabled: Boolean) {
+                super.onShuffleModeEnabledChanged(shuffleModeEnabled)
+                isShuffleFlow.value = shuffleModeEnabled
             }
 
         })
@@ -105,7 +112,7 @@ class MediaPlayerImpl @Inject constructor(
         player.seekTo(positionMillis)
     }
 
-    override fun seekMusicTo(index: Int) {
+    override fun seekMusicByIndex(index: Int) {
         player.seekTo(index, 0L)
     }
 
@@ -136,8 +143,26 @@ class MediaPlayerImpl @Inject constructor(
         return player.getMediaItemAt(index).toMusic()
     }
 
+    override fun setRepeatMode(repeatMode: RepeatMode) {
+        player.repeatMode = repeatMode.toMediaRepeatModeInt()
+    }
+
+    override fun setShuffle(isShuffle: Boolean) {
+        player.shuffleModeEnabled = isShuffle
+    }
+
     private fun updateMusicCount() {
         musicCountFlow.value = player.mediaItemCount
+    }
+
+    private fun getRepeatModeFromMedia(repeatModeInt: Int) = when (repeatModeInt) {
+        Player.REPEAT_MODE_ALL -> RepeatMode.ALL
+        Player.REPEAT_MODE_ONE -> RepeatMode.ONE
+        Player.REPEAT_MODE_OFF -> RepeatMode.NONE
+        else -> {
+            Log.e("test", "repeat mode not found")
+            RepeatMode.NONE
+        }
     }
 
 

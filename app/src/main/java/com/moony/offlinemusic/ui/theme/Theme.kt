@@ -40,11 +40,13 @@ fun OffLineMusicTheme(
     content: @Composable () -> Unit
 ) {
     val systemUiController = rememberSystemUiController()
-    systemUiController.setSystemBarsColor(color = BackgroundBlack, darkIcons = !darkTheme)
+    systemUiController.setSystemBarsColor(color = Color.Transparent, darkIcons = false)
 
     val colorScheme = if (darkTheme) {
         darkColorScheme(
             primary = BackgroundBlack,
+            primaryContainer = BackgroundBlack,
+            onPrimaryContainer = BackgroundBlack,
             onPrimary = Color.White,
             surface = BackgroundBlack,
             background = BackgroundBlack
@@ -52,6 +54,8 @@ fun OffLineMusicTheme(
     } else {
         lightColorScheme(
             primary = BackgroundBlack,
+            primaryContainer = BackgroundBlack,
+            onPrimaryContainer = BackgroundBlack,
             onPrimary = Color.White,
             surface = BackgroundBlack,
             background = BackgroundBlack

@@ -8,7 +8,8 @@
     <string name="content_repeat_all">全曲リピート</string>
     <string name="content_repeat_one">１曲リピート</string>
     <string name="content_repeat_none">リピートオフ</string>
-    <string name="content_shuffle">シャッフル</string>
+    <string name="content_shuffle_on">シャッフル</string>
+    <string name="content_shuffle_off">シャッフルキャンセル</string>
     <string name="content_play">再生</string>
     <string name="content_pause">停止</string>
     <string name="content_next">次へ</string>

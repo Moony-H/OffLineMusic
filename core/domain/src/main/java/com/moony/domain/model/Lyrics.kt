@@ -9,7 +9,7 @@ data class Lyrics(
     fun getNextLyricsPartByIndex(index: Int) = lyricsList.getOrNull(index + 1)
 
     fun getLyricsPartByCurrentMillis(currentMillis: Long): String {
-        return lyricsList[getIndexFromCurrentMillis(currentMillis)]
+        return lyricsList.getOrNull(getIndexFromCurrentMillis(currentMillis)) ?: ""
     }
 
     fun getNextLyricsPartByCurrentMillis(currentMillis: Long): String? {
@@ -21,16 +21,15 @@ data class Lyrics(
         if (currentMillis < 0) return -1
         var l = 0
         var r = timingList.size - 1
-        var index: Int
+        var result = -1
         while (l <= r) {
-            index = l + r / 2
-            if (timingList[index] < currentMillis)
+            val index = (r + l) / 2
+            if (timingList[index] <= currentMillis) {
+                result = index
                 l = index + 1
-            else if (timingList[index] > currentMillis)
+            } else
                 r = index - 1
-            else
-                return index
         }
-        return r
+        return result
     }
 }

@@ -8,7 +8,8 @@
     <string name="content_repeat_all">전곡 반복</string>
     <string name="content_repeat_one">한곡 반복</string>
     <string name="content_repeat_none">반복 없음</string>
-    <string name="content_shuffle">셔플</string>
+    <string name="content_shuffle_on">셔플 실행</string>
+    <string name="content_shuffle_off">셔플 취소</string>
     <string name="content_play">재생</string>
     <string name="content_pause">멈춤</string>
     <string name="content_next">다음</string>

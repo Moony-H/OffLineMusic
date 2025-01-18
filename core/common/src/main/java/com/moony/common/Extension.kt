@@ -12,3 +12,4 @@ import androidx.lifecycle.ViewModel
 
 
 fun Any?.toStringOrEmpty(): String = this?.toString() ?: ""
+

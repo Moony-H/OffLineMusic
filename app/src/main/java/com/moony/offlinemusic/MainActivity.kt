@@ -2,7 +2,11 @@ package com.moony.offlinemusic
 
 import android.content.ComponentName
 import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
+import android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
+import android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
@@ -12,8 +16,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.core.view.WindowCompat
 import androidx.media3.session.MediaController
 import androidx.media3.session.SessionToken
+import com.moony.common.SingleGradientTest
 import com.moony.common.media.LocalMediaViewModel
 import com.moony.media_service.MediaService
 import com.moony.offlinemusic.ui.theme.OffLineMusicTheme
@@ -28,13 +34,19 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         startService()
-        //setSystemBars(isDarkModeEnabled())
+        val window = this.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        WindowCompat.getInsetsController(window, window.decorView).apply {
+            isAppearanceLightStatusBars = true
+        }
         setContent {
             OffLineMusicTheme {
                 CompositionLocalProvider(
                     LocalMediaViewModel.provides(viewModel)
                 ) {
-                    MainScreen()
+                    val yellow=Color.Yellow
+                    //MainScreen()
+                    SingleGradientTest(listOf(Color.Yellow ,Color.Green,Color.Blue))
                 }
             }
         }

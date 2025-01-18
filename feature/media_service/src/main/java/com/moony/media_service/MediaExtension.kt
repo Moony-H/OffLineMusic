@@ -5,10 +5,12 @@ import androidx.core.net.toUri
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import androidx.media3.common.PlaybackException
+import androidx.media3.common.Player
 import com.moony.domain.model.Music
 import com.moony.common.toStringOrEmpty
 import com.moony.domain.model.Lyrics
 import com.moony.domain.type.PlayerError
+import com.moony.domain.type.RepeatMode
 
 fun Music.toMediaItem() =
     MediaItem.Builder().setMediaId(id.toString()).setUri(musicUrl).setMediaMetadata(
@@ -48,3 +50,10 @@ fun PlaybackException.toPlayerError() = when (this.errorCode % 1000) {
     4 -> PlayerError.Decoding(this.errorCodeName, this.message)
     else -> PlayerError.Unexpected(this.errorCodeName, this.message)
 }
+
+fun RepeatMode.toMediaRepeatModeInt() = when (this) {
+    RepeatMode.ALL -> Player.REPEAT_MODE_ALL
+    RepeatMode.ONE -> Player.REPEAT_MODE_ONE
+    RepeatMode.NONE -> Player.REPEAT_MODE_OFF
+}
+

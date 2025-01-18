@@ -79,9 +79,11 @@ dependencies {
 
     implementation(libs.accompanist.systemuicontroller)
 
+    implementation(libs.glide.compose)
+
+
     implementation(project(":core:data"))
     implementation(project(":core:common"))
-    implementation(project(":core:resource"))
     implementation(project(":feature:music_player"))
     implementation(project(":feature:media_service"))
 

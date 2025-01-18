@@ -43,7 +43,7 @@ internal class DummyGenerator @Inject constructor(@ApplicationContext private va
         "AC/DC"
     )
 
-    private val lyricsList = context.resources.getStringArray(R.array.song_lyrics).toList()
+     val lyricsList = context.resources.getStringArray(R.array.song_lyrics).toList()
 
 
     private val dummySongUrl = "https://storage.googleapis.com/exoplayer-test-media-0/play.mp3"
@@ -86,7 +86,7 @@ internal class DummyGenerator @Inject constructor(@ApplicationContext private va
             musicUrl = dummySongUrl,
             artist = getRandom(artistNameList),
             imageUrl = getRandom(dummyImageUrlList),
-            lyrics = getRandom(lyricsList),
+            lyrics = lyricsString,
             lyricsTimingList = timingList
         )
     }

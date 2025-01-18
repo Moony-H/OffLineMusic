@@ -1,127 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="song_lyrics_1">
-        初めまして,\n
-        私の名前はハンムンヒです。\n
-        android programmerで一年半ほど働いてた経験があります。\n
-        DIはhiltを使います。\n
-        clean architectureとMVVMを使うことができます。\n
-        composeもviewも好きです。\n
-        日本語は友人から習いました。\n
-        漢字は難しいですけど、\n
-        ひらがなとカタカナは\n
-        読めます。\n
-        よろしくお願いします。\n
-        \n
-        初めまして,\n
-        私の名前はハンムンヒです。\n
-        android programmerで一年半ほど働いてた経験があります。\n
-        DIはhiltを使います。\n
-        clean architectureとMVVMを使うことができます。\n
-        composeもviewも好きです。\n
-        日本語は友人から習いました。\n
-        漢字は難しいですけど、\n
-        ひらがなとカタカナは\n
-        読めます。\n
-        よろしくお願いします。\n
+        """初めまして、
+私の名前はハンムンヒです。
+android programmerで
+一年半ほど働いてた経験があります。
+DIはhiltを使います。
+clean architectureと
+MVVMを使うことができます。
+composeもviewも好きです。
+日本語は友人から習いました。
+漢字は難しいですけど、
+ひらがなとカタカナは
+読めます。
+よろしくお願いします。
+初めまして,
+私の名前はハンムンヒです。
+android programmerで
+一年半ほど働いてた経験があります。
+DIはhiltを使います。
+clean architectureと
+MVVMを使うことができます。
+composeもviewも好きです。
+日本語は友人から習いました。
+漢字は難しいですけど、
+ひらがなとカタカナは
+読めます。
+よろしくお願いします。"""
     </string>
 
     <string name="song_lyrics_2">
-        지금 이 말이 우리가 다시\n
-        시작하자는 건 아냐\n
-        그저 너의 남아있던 기억들이\n
-        떠올랐을 뿐야\n
-        정말 하루도 빠짐없이 (너, 너는)\n
-        사랑한다 말해줬었지 (ah)\n
-        잠들기 전에, 또 눈 뜨자마자 말해주던 너\n
-        생각이 나 말해보는 거야\n
-        예뻤어, 날 바라봐주던 그 눈빛\n
-        날 불러주던 그 목소리\n
-        다-아-아-아, 다-아-아-아\n
-        그 모든 게 내겐\n
-        예뻤어, 더 바랄 게 없는 듯한 느낌\n
-        오직 너만이 주던 순간들\n
-        다-아-아-아, 다-아-아-아\n
-        지났지만, 넌 너무 예뻤어\n
-        너도 이제는 (이젠) 나와의 기억이\n
-        추억이 되었을 거야\n
-        너에게는 어떤 말을 해도, 다\n
-        지나간 일일 거야 (ah)\n
-        정말 한 번도 빠짐없이 (너, 너는)\n
-        나를 먼저 생각해 줬어 (ah)\n
-        아무 일 아니어도, 미안해, 고마워해 주던 너\n
-        생각이 나 말해보는 거야\n
-        예뻤어, 날 바라봐주던 그 눈빛\n
-        날 불러주던 그 목소리\n
-        다-아-아-아, 다-아-아-아\n
-        그 모든 게 내겐\n
-        예뻤어, 더 바랄 게 없는 듯한 느낌\n
-        오직 너만이 주던 순간들\n
-        다-아-아-아, 다-아-아-아\n
-        지났지만, 넌 너무 예뻤어\n
-        아직도 가끔 네 생각이 나, 어렵게 전화를 걸어볼까?\n
-        생각이 들 때도 많지만, baby, I know it\'s already over\n
-        아무리 원해도, 너는 이제 이미 끝나버린 지난날의\n
-        한 편의 영화였었단 걸 난 알아\n
-        마지막, 날 바라봐주던 그 눈빛\n
-        잘 지내라던 그 목소리\n
-        다-아-아-아, 다-아-아-아\n
-        그마저도 내겐\n
-        예뻤어, 내게 보여준 눈물까지\n
-        너와 가졌던 순간들은\n
-        다-아-아-아, 다-아-아-아\n
-        지났지만, 넌 너무 예뻤어\n
+"""지금 이 말이 우리가 다시
+시작하자는 건 아냐
+그저 너의 남아있던 기억들이
+떠올랐을 뿐야
+정말 하루도 빠짐없이 (너, 너는)
+사랑한다 말해줬었지 (ah)
+잠들기 전에, 또 눈 뜨자마자 말해주던 너
+생각이 나 말해보는 거야
+예뻤어, 날 바라봐주던 그 눈빛
+날 불러주던 그 목소리
+다-아-아-아, 다-아-아-아
+그 모든 게 내겐
+예뻤어, 더 바랄 게 없는 듯한 느낌
+오직 너만이 주던 순간들
+다-아-아-아, 다-아-아-아
+지났지만, 넌 너무 예뻤어
+너도 이제는 (이젠) 나와의 기억이
+추억이 되었을 거야
+너에게는 어떤 말을 해도, 다
+지나간 일일 거야 (ah)
+정말 한 번도 빠짐없이 (너, 너는)
+나를 먼저 생각해 줬어 (ah)
+아무 일 아니어도, 미안해, 고마워해 주던 너
+생각이 나 말해보는 거야
+예뻤어, 날 바라봐주던 그 눈빛
+날 불러주던 그 목소리
+다-아-아-아, 다-아-아-아
+그 모든 게 내겐
+예뻤어, 더 바랄 게 없는 듯한 느낌
+오직 너만이 주던 순간들
+다-아-아-아, 다-아-아-아
+지났지만, 넌 너무 예뻤어
+아직도 가끔 네 생각이 나, 어렵게 전화를 걸어볼까?
+생각이 들 때도 많지만,
+baby, I know it\'s already over
+아무리 원해도, 너는 이제 이미 끝나버린 지난날의
+한 편의 영화였었단 걸 난 알아
+마지막, 날 바라봐주던 그 눈빛
+잘 지내라던 그 목소리
+다-아-아-아, 다-아-아-아
+그마저도 내겐
+예뻤어, 내게 보여준 눈물까지
+너와 가졌던 순간들은
+다-아-아-아, 다-아-아-아
+지났지만, 넌 너무 예뻤어"""
     </string>
 
     <string name="song_lyrics_3">
-        Ay, ay, ay, ay (ooh)\n
-        Ooh, ooh, ooh, ooh (ooh)\n
-        Ay, ay\n
-        Ooh, ooh, ooh, ooh\n
-        Needless to say, I keep her in check\n
-        She was a bad-bad, nevertheless (yeah)\n
-        Callin\' it quits now, baby, I\'m a wreck (wreck)\n
-        Crash at my place, baby, you\'re a wreck (wreck)\n
-        Needless to say, I\'m keeping her in check\n
-        She was all bad-bad, nevertheless\n
-        Callin\' it quits now, baby, I\'m a wreck\n
-        Crash at my place, baby, you\'re a wreck\n
-        Thinkin\' in a bad way, losin\' your grip\n
-        Screamin\' at my face, baby, don\'t trip\n
-        Someone took a big L, don\'t know how that felt\n
-        Lookin\' at you sideways, party on tilt\n
-        Ooh-ooh-ooh\n
-        Some things you just can\'t refuse\n
-        She wanna ride me like a cruise\n
-        And I\'m not tryna lose\n
-        Then you\'re left in the dust\n
-        Unless I stuck by ya\n
-        You\'re the sunflower\n
-        I think your love would be too much\n
-        Or you\'ll be left in the dust\n
-        Unless I stuck by ya\n
-        You\'re the sunflower\n
-        You\'re the sunflower\n
-        Every time I\'m leavin\' on you (ooh)\n
-        You don\'t make it easy, no (no, no)\n
-        Wish I could be there for you\n
-        Give me a reason to, oh (oh)\n
-        Every time I\'m walkin\' out\n
-        I can hear you tellin\' me to turn around\n
-        Fightin\' for my trust and you won\'t back down\n
-        Even if we gotta risk it all right now, oh (now)\n
-        I know you\'re scared of the unknown (\'known)\n
-        You don\'t wanna be alone (alone)\n
-        I know I always come and go (and go)\n
-        But it\'s out of my control\n
-        And you\'ll be left in the dust\n
-        Unless I stuck by ya\n
-        You\'re the sunflower\n
-        I think your love would be too much\n
-        Or you\'ll be left in the dust\n
-        Unless I stuck by ya\n
-        You\'re the sunflower\n
-        You\'re the sunflower (yeah)\n
+"""Ay, ay, ay, ay (ooh)
+Ooh, ooh, ooh, ooh (ooh)
+Ay, ay
+Ooh, ooh, ooh, ooh
+Needless to say, I keep her in check
+She was a bad-bad, nevertheless (yeah)
+Callin\' it quits now, baby,
+I\'m a wreck (wreck)
+Crash at my place, baby,
+you\'re a wreck (wreck)
+Needless to say, I\'m keeping her in check
+She was all bad-bad, nevertheless
+Callin\' it quits now, baby, I\'m a wreck
+Crash at my place, baby, you\'re a wreck
+Thinkin\' in a bad way, losin\' your grip
+Screamin\' at my face, baby, don\'t trip
+Someone took a big L,
+don\'t know how that felt
+Lookin\' at you sideways, party on tilt
+Ooh-ooh-ooh
+Some things you just can\'t refuse
+She wanna ride me like a cruise
+And I\'m not tryna lose
+Then you\'re left in the dust
+Unless I stuck by ya
+You\'re the sunflower
+I think your love would be too much
+Or you\'ll be left in the dust
+Unless I stuck by ya
+You\'re the sunflower
+You\'re the sunflower
+Every time I\'m leavin\' on you (ooh)
+You don\'t make it easy, no (no, no)
+Wish I could be there for you
+Give me a reason to, oh (oh)
+Every time I\'m walkin\' out
+I can hear you tellin\' me to turn around
+Fightin\' for my trust and you won\'t back down
+Even if we gotta risk it all right now, oh (now)
+I know you\'re scared of the unknown (\'known)
+You don\'t wanna be alone (alone)
+I know I always come and go (and go)
+But it\'s out of my control
+And you\'ll be left in the dust
+Unless I stuck by ya
+You\'re the sunflower
+I think your love would be too much
+Or you\'ll be left in the dust
+Unless I stuck by ya
+You\'re the sunflower
+You\'re the sunflower (yeah)"""
     </string>
 
 </resources>

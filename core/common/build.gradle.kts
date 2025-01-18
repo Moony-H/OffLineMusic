@@ -53,6 +53,7 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
 
+
     // hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
@@ -60,8 +61,11 @@ dependencies {
 
     //paging
     implementation(libs.androidx.paging.runtime)
+    implementation(libs.glide.compose)
+
 
 
     implementation(project(":core:data"))
+    api(project(":core:resource"))
 
 }
