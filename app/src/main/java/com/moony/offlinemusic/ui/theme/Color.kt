@@ -2,7 +2,7 @@ package com.moony.offlinemusic.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFF995050)
+val Purple80 = Color(0xFF141414)
 val PurpleGrey80 = Color(0xFF000000)
 val Pink80 = Color(0xFF5C5C5C)
 

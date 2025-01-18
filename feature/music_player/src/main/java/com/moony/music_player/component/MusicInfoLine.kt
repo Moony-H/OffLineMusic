@@ -16,12 +16,21 @@ import com.moony.resource.R
 
 @Composable
 fun MusicInfoLine(modifier: Modifier, title: String, artist: String) {
+
+    val titleSize = dimensionResource(R.dimen.text_music_title_size)
+    val artistTextSize = dimensionResource(R.dimen.text_music_artist_size)
     Row(
         modifier = modifier,
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        MusicTitleAndArtist(modifier = Modifier.weight(1f), title = title, artist = artist)
+        MusicTitleAndArtist(
+            modifier = Modifier.weight(1f),
+            title = title,
+            artist = artist,
+            titleSize = titleSize,
+            artistTextSize = artistTextSize
+        )
         IconButton(modifier = Modifier.size(dimensionResource(R.dimen.icon_heart_size)), onClick = {
 
         }) {

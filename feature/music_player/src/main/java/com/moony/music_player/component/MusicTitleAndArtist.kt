@@ -24,23 +24,31 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.ContentDrawScope
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.moony.resource.R
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun MusicTitleAndArtist(title: String, artist: String, modifier: Modifier = Modifier) {
-    val titleSize = dimensionResource(R.dimen.text_music_title_size).value.sp
-    val artistTextSize = dimensionResource(R.dimen.text_music_artist_size).value.sp
+fun MusicTitleAndArtist(
+    title: String,
+    artist: String,
+    titleSize: Dp,
+    artistTextSize: Dp,
+    modifier: Modifier = Modifier
+) {
     Column(modifier = modifier) {
         Text(
             text = title,
-            fontSize = titleSize,
+            fontSize = titleSize.value.sp,
             maxLines = 1,
-            modifier = Modifier.basicMarquee(animationMode = MarqueeAnimationMode.Immediately, iterations = Int.MAX_VALUE)
+            modifier = Modifier.basicMarquee(
+                animationMode = MarqueeAnimationMode.Immediately,
+                iterations = Int.MAX_VALUE
+            )
         )
-        Text(text = artist, fontSize = artistTextSize, maxLines = 1)
+        Text(text = artist, fontSize = artistTextSize.value.sp, maxLines = 1)
     }
 }
 

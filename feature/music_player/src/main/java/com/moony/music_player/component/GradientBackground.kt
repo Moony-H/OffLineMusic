@@ -13,7 +13,7 @@ fun GradientBackground(
     modifier: Modifier = Modifier,
     gradientBoxModifier: Modifier = Modifier.fillMaxSize(),
     colors: List<Color>,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     Box(modifier = modifier, contentAlignment = Alignment.TopCenter) {
         GradientBox(gradientBoxModifier, colors)

@@ -46,7 +46,7 @@ fun MusicSlider(
     val totalDurationTextSize = dimensionResource(R.dimen.text_music_total_duration_size).value.sp
     Column(modifier = modifier) {
         Slider(
-            modifier = Modifier.padding(top=0.dp,bottom=0.dp).height(12.dp),
+            modifier = Modifier.height(12.dp),
             value = if (!isDragging) currentPositionFloat else sliderPosition,
             onValueChange = {
                 isDragging = true

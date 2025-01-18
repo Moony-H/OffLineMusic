@@ -38,9 +38,9 @@
     <dimen name="max_size_album_image">400dp</dimen>
     <dimen name="min_size_album_image">200dp</dimen>
     <dimen name="max_size_album_background_image">600dp</dimen>
-    <dimen name="min_size_album_background_image">300dp</dimen>"
+    <dimen name="min_size_album_background_image">300dp</dimen>
     <dimen name="albumImageRoundedRadius">16dp</dimen>
-
+    <dimen name="bottom_mini_player_height">60dp</dimen>
 
 
 </resources>

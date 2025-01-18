@@ -10,3 +10,7 @@ val BackgroundBlack = Color(0xFF0A0D0F)
 val DisableMusicIconGray = Color(0xFFAAAAAA)
 val LyricsEnableGray = Color(0xFFAAAAAA)
 val LyricsDisableGray = Color(0xFF646464)
+
+val MiniPlayerBackground = Color(0xFF282828)
+val MiniPlayerProgressBackground = Color(0xFF484848)
+

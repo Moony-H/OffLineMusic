@@ -1,6 +1,6 @@
 package com.moony.music_player
 
-import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -15,23 +15,20 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.asImageBitmap
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
-import com.bumptech.glide.integration.compose.GlideImage
 import com.moony.common.composable.ImageWithPlaceHolder
 import com.moony.common.media.LocalMediaViewModel
 import com.moony.domain.model.Music
 import com.moony.music_player.component.GradientBackground
 import com.moony.music_player.component.LyricsText
+import com.moony.music_player.component.MiniPlayer
 import com.moony.music_player.component.MusicBottomIconGroup
 import com.moony.music_player.component.MusicControlButtonGroup
 import com.moony.music_player.component.MusicInfoLine
@@ -44,6 +41,7 @@ import com.moony.resource.R
 fun MusicScreen(
     scaffoldTopPadding: Dp,
     modifier: Modifier = Modifier,
+    alpha: Float = 1f
 ) {
     val mediaViewModel = LocalMediaViewModel.current
 
@@ -90,94 +88,106 @@ fun MusicScreen(
     //roundedCornerRadius
     val albumCornerRadius = dimensionResource(R.dimen.albumImageRoundedRadius)
 
+    //miniPlayer
+    val bottomMiniPlayerHeight = dimensionResource(R.dimen.bottom_mini_player_height)
+
     //music
     val music = musicState.value ?: Music.getEmpty()
 
 
-    GradientBackground(
-        modifier.fillMaxSize(),
-        gradientBoxModifier = Modifier.sizeIn(
-            minWidth = albumBackgroundMinSize,
-            maxWidth = albumBackgroundMaxSize,
-            minHeight = albumBackgroundMinSize,
-            maxHeight = albumBackgroundMaxSize
-        ),
-        colors = albumColors
-    ) {
-        Column(
-            modifier = modifier
-                .padding(top = scaffoldTopPadding)
-                .padding(horizontal = dimensionResource(R.dimen.screen_padding_horizontal)),
-            horizontalAlignment = Alignment.CenterHorizontally,
+    Box(modifier = modifier) {
+        GradientBackground(
+            modifier = Modifier
+                .fillMaxSize()
+                .alpha(alpha),
+            gradientBoxModifier = Modifier.sizeIn(
+                minWidth = albumBackgroundMinSize,
+                maxWidth = albumBackgroundMaxSize,
+                minHeight = albumBackgroundMinSize,
+                maxHeight = albumBackgroundMaxSize
+            ),
+            colors = albumColors,
         ) {
-            Spacer(modifier = Modifier.height(12.dp))
-            TopBar(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = dimensionResource(R.dimen.screen_padding_vertical))
-            )
-            Spacer(modifier = Modifier.weight(2f))
+            Column(
+                modifier = modifier
+                    .padding(top = scaffoldTopPadding)
+                    .padding(horizontal = dimensionResource(R.dimen.screen_padding_horizontal)),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Spacer(modifier = Modifier.height(12.dp))
+                TopBar(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = dimensionResource(R.dimen.screen_padding_vertical))
+                )
+                Spacer(modifier = Modifier.weight(2f))
 
-            ImageWithPlaceHolder(bitmap = albumImage,
-                modifier = Modifier
-                    .sizeIn(
-                        minWidth = albumImageMinSize,
-                        maxWidth = albumImageMaxSize,
-                        minHeight = albumImageMinSize,
-                        maxHeight = albumImageMaxSize
-                    )
-                    .fillMaxWidth()
-                    .padding(horizontal = dimensionResource(R.dimen.screen_padding_horizontal))
-                    .aspectRatio(1f)
-                    .clip(RoundedCornerShape(albumCornerRadius)),
-                contentScale = ContentScale.Crop,
-                contentDescription = stringResource(R.string.content_alum_image),
-            )
-            Spacer(modifier = Modifier.height(12.dp))
-            LyricsText(currentLyrics, nextLyrics)
+                ImageWithPlaceHolder(
+                    bitmap = albumImage,
+                    modifier = Modifier
+                        .sizeIn(
+                            minWidth = albumImageMinSize,
+                            maxWidth = albumImageMaxSize,
+                            minHeight = albumImageMinSize,
+                            maxHeight = albumImageMaxSize
+                        )
+                        .fillMaxWidth()
+                        .padding(horizontal = dimensionResource(R.dimen.screen_padding_horizontal))
+                        .aspectRatio(1f)
+                        .clip(RoundedCornerShape(albumCornerRadius)),
+                    contentScale = ContentScale.Crop,
+                    contentDescription = stringResource(R.string.content_alum_image),
+                )
+                Spacer(modifier = Modifier.height(12.dp))
+                LyricsText(currentLyrics, nextLyrics)
 
-            Spacer(modifier = Modifier.weight(2f))
+                Spacer(modifier = Modifier.weight(2f))
 
-            MusicInfoLine(modifier = Modifier.fillMaxWidth(), music.title, music.artist)
-            Spacer(modifier=Modifier.height(20.dp))
-            MusicSlider(
-                currentPosition,
-                totalPosition,
-                modifier = Modifier.fillMaxWidth(),
-                onRelease = {
-                    mediaViewModel.seekTo(it)
+                MusicInfoLine(modifier = Modifier.fillMaxWidth(), music.title, music.artist)
+                Spacer(modifier = Modifier.height(20.dp))
+                MusicSlider(
+                    currentPosition,
+                    totalPosition,
+                    modifier = Modifier.fillMaxWidth(),
+                    onRelease = {
+                        mediaViewModel.seekTo(it)
 
-                }
-            )
-            Spacer(modifier=Modifier.height(20.dp))
+                    }
+                )
+                Spacer(modifier = Modifier.height(20.dp))
 
 
-            MusicControlButtonGroup(
-                modifier = Modifier.fillMaxWidth(),
-                isPlaying = isPlaying,
-                repeatMode = repeatMode,
-                isShuffle = isShuffle,
-                onPlayButtonClicked = mediaViewModel::play,
-                onPauseButtonClicked = mediaViewModel::pause,
-                onPrevButtonClicked = mediaViewModel::previous,
-                onNextButtonClicked = mediaViewModel::next,
-                onRepeatButtonClicked = {
-                    mediaViewModel.setRepeatMode(repeatMode.next())
-                },
-                onShuffleButtonClicked = {
-                    mediaViewModel.setShuffle(!isShuffle)
-                }
-            )
-            Spacer(modifier = Modifier.weight(3f))
+                MusicControlButtonGroup(
+                    modifier = Modifier.fillMaxWidth(),
+                    isPlaying = isPlaying,
+                    repeatMode = repeatMode,
+                    isShuffle = isShuffle,
+                    onPlayButtonClicked = mediaViewModel::play,
+                    onPauseButtonClicked = mediaViewModel::pause,
+                    onPrevButtonClicked = mediaViewModel::previous,
+                    onNextButtonClicked = mediaViewModel::next,
+                    onRepeatButtonClicked = {
+                        mediaViewModel.setRepeatMode(repeatMode.next())
+                    },
+                    onShuffleButtonClicked = {
+                        mediaViewModel.setShuffle(!isShuffle)
+                    }
+                )
+                Spacer(modifier = Modifier.weight(3f))
 
-            MusicBottomIconGroup(
-                modifier = Modifier.fillMaxWidth(),
-                onLyricsClick = {},
-                onPlaylistClick = {}
-            )
-            Spacer(modifier = Modifier.height(12.dp))
+                MusicBottomIconGroup(
+                    modifier = Modifier.fillMaxWidth(),
+                    onLyricsClick = {},
+                    onPlaylistClick = {}
+                )
+                Spacer(modifier = Modifier.height(12.dp))
 
+            }
         }
+        MiniPlayer(modifier = Modifier
+            .fillMaxWidth()
+            .alpha(1f-alpha)
+            .height(bottomMiniPlayerHeight))
     }
 
 }
