@@ -19,7 +19,6 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.core.view.WindowCompat
 import androidx.media3.session.MediaController
 import androidx.media3.session.SessionToken
-import com.moony.common.SingleGradientTest
 import com.moony.common.media.LocalMediaViewModel
 import com.moony.media_service.MediaService
 import com.moony.offlinemusic.ui.theme.OffLineMusicTheme
@@ -34,19 +33,14 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         startService()
-        val window = this.window
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        WindowCompat.getInsetsController(window, window.decorView).apply {
-            isAppearanceLightStatusBars = true
-        }
+        enableEdgeToEdge()
         setContent {
             OffLineMusicTheme {
                 CompositionLocalProvider(
                     LocalMediaViewModel.provides(viewModel)
                 ) {
-                    val yellow=Color.Yellow
-                    //MainScreen()
-                    SingleGradientTest(listOf(Color.Yellow ,Color.Green,Color.Blue))
+                    MainScreen()
+                    //SingleGradientTest(listOf(Color.Yellow ,Color.Green,Color.Blue))
                 }
             }
         }

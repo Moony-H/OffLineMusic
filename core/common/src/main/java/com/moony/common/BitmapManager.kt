@@ -1,10 +1,7 @@
 package com.moony.common
 
 import android.graphics.Bitmap
-import android.graphics.Canvas
 import android.graphics.HardwareRenderer
-import android.graphics.LinearGradient
-import android.graphics.Paint
 import android.graphics.PixelFormat
 import android.graphics.RenderEffect
 import android.graphics.RenderNode
@@ -13,12 +10,25 @@ import android.hardware.HardwareBuffer
 import android.media.ImageReader
 import android.os.Build
 import androidx.compose.ui.graphics.Color
+import androidx.palette.graphics.Palette
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
-object BlurManager {
-    fun getBlurBitmap(bitmap: Bitmap, radius: Float): Bitmap {
+object BitmapManager {
+
+    suspend fun extractColorFromBitmap(bitmap: Bitmap): List<Color> =
+        suspendCoroutine { continuation ->
+            Palette.from(bitmap).addFilter({ _, hsl ->
+                hsl[2]<=0.7f
+            }).maximumColorCount(4).generate { palette ->
+                continuation.resume(palette?.swatches?.map { Color(it.rgb) } ?: emptyList())
+            }
+        }
+
+    fun getBlurredBitmap(bitmap: Bitmap, radius: Float): Bitmap {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) return bitmap
-        val width=bitmap.width
-        val height=bitmap.height
+        val width = bitmap.width
+        val height = bitmap.height
         val imageReader = ImageReader.newInstance(
             width, height,
             PixelFormat.RGBA_8888, 1,

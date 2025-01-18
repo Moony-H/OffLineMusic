@@ -1,10 +1,13 @@
 package com.moony.music_player.component
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
@@ -16,7 +19,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.moony.resource.R
 import com.moony.resource.DisableMusicIconGray
@@ -41,6 +46,7 @@ fun MusicSlider(
     val totalDurationTextSize = dimensionResource(R.dimen.text_music_total_duration_size).value.sp
     Column(modifier = modifier) {
         Slider(
+            modifier = Modifier.padding(top=0.dp,bottom=0.dp).height(12.dp),
             value = if (!isDragging) currentPositionFloat else sliderPosition,
             onValueChange = {
                 isDragging = true
@@ -56,15 +62,12 @@ fun MusicSlider(
             ),
             thumb = {},
         )
-
         Row(
             modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             MillisToTimeText(timeMillis = currentPosition, size = currentPositionTextSize)
             MillisToTimeText(timeMillis = totalDuration, size = totalDurationTextSize)
-
         }
     }
 }

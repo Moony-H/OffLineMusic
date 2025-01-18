@@ -2,6 +2,7 @@ package com.moony.common
 
 import android.content.Context
 import android.graphics.Bitmap
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.ViewModel
@@ -26,5 +27,5 @@ abstract class MediaViewModel(private val mediaPlayer: MediaPlayer) : ViewModel(
     abstract val nextLyricsPartFlow: StateFlow<String>
     protected abstract val currentPositionStateFlow: StateFlow<Long>
     abstract val albumImage: StateFlow<Bitmap?>
-    abstract val backgroundBlurImage: StateFlow<Bitmap?>
+    abstract val albumColors:StateFlow<List<Color>>
 }

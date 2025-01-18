@@ -36,11 +36,11 @@ private val LightColorScheme = lightColorScheme(
 @Composable
 fun OffLineMusicTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
     val systemUiController = rememberSystemUiController()
-    systemUiController.setSystemBarsColor(color = Color.Transparent, darkIcons = false)
+    systemUiController.setStatusBarColor(color= Color.Transparent, darkIcons = false)
+    systemUiController.setNavigationBarColor(color=BackgroundBlack, darkIcons = false)
 
     val colorScheme = if (darkTheme) {
         darkColorScheme(

@@ -1,4 +1,4 @@
-package com.moony.common
+package com.moony.common.composable
 
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -79,8 +79,6 @@ fun SlideUpLayout(
             .fillMaxSize()
             .onSizeChanged { size = it }
             .anchoredDraggable(state, orientation = Orientation.Vertical)
-
-
     ) {
         backgroundContent()
         Box(

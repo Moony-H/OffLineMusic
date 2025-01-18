@@ -1,17 +1,14 @@
 package com.moony.offlinemusic
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.util.Log
-import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.asImageBitmap
-import androidx.core.content.ContextCompat
+import androidx.compose.ui.graphics.Color
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingData
 import com.bumptech.glide.Glide
-import com.moony.common.BlurManager
+import com.moony.common.BitmapManager
 import com.moony.common.MediaViewModel
 import com.moony.domain.manager.MediaPlayer
 import com.moony.domain.model.Music
@@ -78,16 +75,23 @@ class MainViewModel @Inject constructor(
     override val musicPagingFlow: Flow<PagingData<Music>> = musicPager.flow
 
     override val albumImage = currentMusicFlow.filterNotNull().map { music ->
-        Glide
-            .with(context)
+        Glide.with(context)
             .load(music.imageUrl)
             .error(R.drawable.no_image_placeholder)
             .submit().get().toBitmap()
-    }.flowOn(Dispatchers.IO).stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
+    }.flowOn(Dispatchers.IO).stateIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(5_000),
+        null
+    )
 
-    override val backgroundBlurImage = albumImage.filterNotNull().map {
-        BlurManager.getBlurBitmap(it, 50f)
-    }.flowOn(Dispatchers.IO).stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
+    override val albumColors: StateFlow<List<Color>> = albumImage.filterNotNull().map {
+        BitmapManager.extractColorFromBitmap(it)
+    }.flowOn(Dispatchers.IO).stateIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(5_000),
+        listOf()
+    )
 
     //test용
     init {

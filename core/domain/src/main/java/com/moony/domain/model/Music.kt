@@ -18,7 +18,7 @@ data class Music(
             title = "노래를 선택해주세요",
             musicUrl = "",
             artist = "",
-            imageUrl ="",// "https://github.com/user-attachments/assets/7eb6c771-1246-47a7-a3df-5ce7d3b3bd31",
+            imageUrl ="",
             lyrics = Lyrics(listOf(), listOf())
         )
     }

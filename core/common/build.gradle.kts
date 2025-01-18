@@ -63,6 +63,9 @@ dependencies {
     implementation(libs.androidx.paging.runtime)
     implementation(libs.glide.compose)
 
+    implementation(libs.androidx.palette)
+
+
 
 
     implementation(project(":core:data"))
