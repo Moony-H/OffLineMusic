@@ -22,7 +22,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.moony.common.composable.ImageWithPlaceHolder
 import com.moony.common.media.LocalMediaViewModel
 import com.moony.domain.model.Music
@@ -85,10 +84,10 @@ fun MusicScreen(
 
 
     //roundedCornerRadius
-    val albumCornerRadius = dimensionResource(R.dimen.albumImageRoundedRadius)
+    val albumCornerRadius = dimensionResource(R.dimen.album_image_rounded_radius)
 
     //miniPlayer
-    val bottomMiniPlayerHeight = dimensionResource(R.dimen.bottom_mini_player_height)
+    val bottomMiniPlayerHeight = dimensionResource(R.dimen.height_bottom_mini_player)
 
     //music
     val music = musicState.value ?: Music.getEmpty()

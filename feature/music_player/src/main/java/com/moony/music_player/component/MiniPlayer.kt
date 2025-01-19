@@ -23,10 +23,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.moony.common.composable.ImageWithPlaceHolder
+import com.moony.common.composable.MusicTitleAndArtist
 import com.moony.common.media.LocalMediaViewModel
 import com.moony.domain.model.Music
 import com.moony.resource.MiniPlayerBackground
@@ -64,6 +66,10 @@ fun MiniPlayer(modifier: Modifier = Modifier) {
     val mediaDescription = stringResource(if (isPlaying) pauseDescriptionId else playDescriptionId)
     val nextDescription = stringResource(R.string.content_next)
     val playlistDescription = stringResource(R.string.content_playlist)
+
+    //size
+    val musicTitleTextSize = dimensionResource(R.dimen.text_size_music_title_small)
+    val musicArtistTextSize = dimensionResource(R.dimen.text_size_music_artist_small)
 
     val duration = if (totalDuration == 0L) 1 else totalDuration
     val currentPositionFloat = (currentPosition.toFloat() / duration)
@@ -103,8 +109,8 @@ fun MiniPlayer(modifier: Modifier = Modifier) {
                 title = music.title,
                 artist = music.artist,
                 modifier = Modifier.weight(1f),
-                titleSize = 16.dp,
-                artistTextSize = 12.dp
+                titleSize = musicTitleTextSize,
+                artistTextSize = musicArtistTextSize
             )
             Spacer(modifier = Modifier.width(8.dp))
 

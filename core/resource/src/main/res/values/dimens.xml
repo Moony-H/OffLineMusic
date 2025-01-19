@@ -21,6 +21,11 @@
     <dimen name="play_control_button_group_max_width">300dp</dimen>
     <dimen name="play_control_button_group_max_height">60dp</dimen>
 
+
+    <!--padding-->
+    <dimen name="padding_music_list_item_vertical">8dp</dimen>
+    <dimen name="padding_music_list_item_horizontal">12dp</dimen>
+
     <!--screen padding-->
     <dimen name="screen_padding_horizontal">16dp</dimen>
     <dimen name="screen_padding_vertical">16dp</dimen>
@@ -29,18 +34,22 @@
     <dimen name="spacer_icon_horizontal">20dp</dimen>
 
     <!--text size-->
-    <dimen name="text_music_title_size">20sp</dimen>
-    <dimen name="text_music_artist_size">16sp</dimen>
-    <dimen name="text_music_current_position_size">12sp</dimen>
-    <dimen name="text_music_total_duration_size">12sp</dimen>
+    <dimen name="text_size_music_title">20sp</dimen>
+    <dimen name="text_size_music_artist">16sp</dimen>
+    <dimen name="text_size_music_current_position">12sp</dimen>
+    <dimen name="text_size_total_duration">12sp</dimen>
+    <dimen name="text_size_music_title_small">16dp</dimen>
+    <dimen name="text_size_music_artist_small">12dp</dimen>
 
     <!--other size-->
     <dimen name="max_size_album_image">400dp</dimen>
     <dimen name="min_size_album_image">200dp</dimen>
     <dimen name="max_size_album_background_image">600dp</dimen>
     <dimen name="min_size_album_background_image">300dp</dimen>
-    <dimen name="albumImageRoundedRadius">16dp</dimen>
-    <dimen name="bottom_mini_player_height">60dp</dimen>
+    <dimen name="album_image_rounded_radius">16dp</dimen>
+    <dimen name="height_bottom_mini_player">60dp</dimen>
+
+    <dimen name="height_music_list_item">60dp</dimen>
 
 
 </resources>

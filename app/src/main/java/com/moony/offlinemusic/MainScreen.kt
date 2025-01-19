@@ -1,6 +1,5 @@
 package com.moony.offlinemusic
 
-import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -9,11 +8,9 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.LayoutDirection
@@ -47,7 +44,7 @@ fun MainScreen() {
                     bottom = innerPadding.calculateBottomPadding()
                 ),
             onDragProgressChanged = { dragProcess = it },
-            bottomOffsetDp = dimensionResource(R.dimen.bottom_mini_player_height),
+            bottomOffsetDp = dimensionResource(R.dimen.height_bottom_mini_player),
             slideContent = {
                 MusicScreen(
                     modifier = Modifier

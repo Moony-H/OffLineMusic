@@ -12,13 +12,14 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import com.moony.common.composable.MusicTitleAndArtist
 import com.moony.resource.R
 
 @Composable
 fun MusicInfoLine(modifier: Modifier, title: String, artist: String) {
 
-    val titleSize = dimensionResource(R.dimen.text_music_title_size)
-    val artistTextSize = dimensionResource(R.dimen.text_music_artist_size)
+    val titleSize = dimensionResource(R.dimen.text_size_music_title)
+    val artistTextSize = dimensionResource(R.dimen.text_size_music_artist)
     Row(
         modifier = modifier,
         horizontalArrangement = Arrangement.SpaceBetween,

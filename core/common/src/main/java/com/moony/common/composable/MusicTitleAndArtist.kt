@@ -1,15 +1,5 @@
-package com.moony.music_player.component
+package com.moony.common.composable
 
-import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.ContentTransform
-import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.SizeTransform
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.MarqueeAnimationMode
 import androidx.compose.foundation.basicMarquee
@@ -23,11 +13,9 @@ import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.ContentDrawScope
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.moony.resource.R
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
