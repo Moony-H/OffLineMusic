@@ -36,7 +36,6 @@ import com.moony.music_player.component.MusicSlider
 import com.moony.music_player.component.TopBar
 import com.moony.resource.R
 
-@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun MusicScreen(
     scaffoldTopPadding: Dp,
@@ -98,8 +97,8 @@ fun MusicScreen(
     Box(modifier = modifier) {
         GradientBackground(
             modifier = Modifier
-                .fillMaxSize()
-                .alpha(alpha),
+                .alpha(alpha)
+                .fillMaxSize(),
             gradientBoxModifier = Modifier.sizeIn(
                 minWidth = albumBackgroundMinSize,
                 maxWidth = albumBackgroundMaxSize,
@@ -118,6 +117,7 @@ fun MusicScreen(
                 TopBar(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .alpha(alpha)
                         .padding(vertical = dimensionResource(R.dimen.screen_padding_vertical))
                 )
                 Spacer(modifier = Modifier.weight(2f))
@@ -134,7 +134,8 @@ fun MusicScreen(
                         .fillMaxWidth()
                         .padding(horizontal = dimensionResource(R.dimen.screen_padding_horizontal))
                         .aspectRatio(1f)
-                        .clip(RoundedCornerShape(albumCornerRadius)),
+                        .clip(RoundedCornerShape(albumCornerRadius))
+                    ,
                     contentScale = ContentScale.Crop,
                     contentDescription = stringResource(R.string.content_alum_image),
                 )
@@ -185,8 +186,8 @@ fun MusicScreen(
             }
         }
         MiniPlayer(modifier = Modifier
-            .fillMaxWidth()
             .alpha(1f-alpha)
+            .fillMaxWidth()
             .height(bottomMiniPlayerHeight))
     }
 
