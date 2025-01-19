@@ -1,6 +1,8 @@
 package com.moony.offlinemusic
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -15,6 +17,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.LayoutDirection
 import com.moony.common.composable.SlideUpLayout
@@ -31,6 +34,8 @@ fun MainScreen() {
 
 
     var dragProcess by remember { mutableFloatStateOf(0f) }
+    val bottomSlideOffset = dimensionResource(R.dimen.height_bottom_mini_player)
+    val direction = LocalLayoutDirection.current
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -38,29 +43,39 @@ fun MainScreen() {
             SnackbarHost(snackBarHostState)
         }
     ) { innerPadding ->
+        val startPadding = innerPadding.calculateStartPadding(direction)
+        val endPadding = innerPadding.calculateEndPadding(direction)
+        val topPadding = innerPadding.calculateTopPadding()
+        val bottomPadding = innerPadding.calculateBottomPadding()
         SlideUpLayout(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(
-                    start = innerPadding.calculateLeftPadding(LayoutDirection.Ltr),
-                    end = innerPadding.calculateRightPadding(LayoutDirection.Ltr),
-                    bottom = innerPadding.calculateBottomPadding()
+                    start = startPadding,
+                    end = endPadding,
+                    bottom = bottomPadding
                 ),
             onDragProgressChanged = { dragProcess = it },
-            bottomOffsetDp = dimensionResource(R.dimen.height_bottom_mini_player),
+            bottomOffsetDp = bottomSlideOffset,
             slideContent = {
                 MusicScreen(
                     modifier = Modifier
                         .fillMaxSize()
                         .background(BackgroundBlack),
-                    scaffoldTopPadding = innerPadding.calculateTopPadding(),
+                    scaffoldTopPadding = topPadding,
                     alpha = dragProcess
                 )
             },
             backgroundContent = {
                 PlaylistScreen(
-                    modifier = Modifier.fillMaxSize(),
-                    topPadding = innerPadding.calculateTopPadding()
+                    modifier = Modifier
+                        .padding(
+                            bottom = bottomSlideOffset,
+                            start = startPadding,
+                            end = endPadding
+                        )
+                        .fillMaxSize(),
+                    topPadding = topPadding
                 )
             }
         )

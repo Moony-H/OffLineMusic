@@ -2,6 +2,7 @@ package com.moony.playlist
 
 import android.util.Log
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -38,33 +39,43 @@ fun PlaylistScreen(modifier: Modifier = Modifier, topPadding: Dp) {
     val albumBackgroundMinSize = dimensionResource(R.dimen.min_size_album_background_image)
     val albumBackgroundMaxSize = dimensionResource(R.dimen.max_size_album_background_image)
 
+    val screenPaddingHorizontal = dimensionResource(R.dimen.screen_padding_horizontal)
+    val screenPaddingVertical = dimensionResource(R.dimen.screen_padding_vertical)
 
     GradientBackground(
         modifier = modifier,
-        gradientBoxModifier = Modifier.sizeIn(
-            minWidth = albumBackgroundMinSize,
-            maxWidth = albumBackgroundMaxSize,
-            minHeight = albumBackgroundMinSize,
-            maxHeight = albumBackgroundMaxSize
-        ).fillMaxWidth().aspectRatio(1f),
+        gradientBoxModifier = Modifier
+            .sizeIn(
+                minWidth = albumBackgroundMinSize,
+                maxWidth = albumBackgroundMaxSize,
+                minHeight = albumBackgroundMinSize,
+                maxHeight = albumBackgroundMaxSize
+            )
+            .fillMaxWidth()
+            .aspectRatio(1f),
         colors = backgroundColors,
     ) {
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(top = topPadding),
+                .padding(horizontal = screenPaddingHorizontal)
+                .padding(top = topPadding + screenPaddingVertical),
 
-        ) {
+            ) {
             item {
                 PlaylistHeader(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(height)
                 )
+                Spacer(modifier = Modifier.height(screenPaddingVertical))
             }
-            items(playlist.itemCount,key = {
-                playlist[it]?.id ?: 0
-            },) { index ->
+            items(
+                playlist.itemCount,
+                key = {
+                    playlist[it]?.id ?: 0
+                },
+            ) { index ->
                 playlist[index]?.let { music ->
                     MusicListItem(
                         modifier = Modifier

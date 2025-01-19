@@ -27,7 +27,6 @@ fun MusicListItem(music: Music, modifier: Modifier = Modifier, onClick: () -> Un
 
 
     //padding
-    val paddingHorizontal = dimensionResource(R.dimen.padding_music_list_item_horizontal)
     val paddingVertical = dimensionResource(R.dimen.padding_music_list_item_vertical)
 
     //textSize
@@ -38,7 +37,7 @@ fun MusicListItem(music: Music, modifier: Modifier = Modifier, onClick: () -> Un
         modifier = modifier
             .clickable(onClick = onClick)
             .background(Color.Transparent)
-            .padding(horizontal = paddingHorizontal, vertical = paddingVertical),
+            .padding(vertical = paddingVertical),
         verticalAlignment = Alignment.CenterVertically
     ) {
         ImageWithPlaceHolder(

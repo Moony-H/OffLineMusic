@@ -40,7 +40,7 @@
     <dimen name="text_size_total_duration">12sp</dimen>
     <dimen name="text_size_music_title_small">16dp</dimen>
     <dimen name="text_size_music_artist_small">12dp</dimen>
-    <dimen name="text_size_playlist_header">20dp</dimen>
+    <dimen name="text_size_playlist_header">32dp</dimen>
 
     <!--other size-->
     <dimen name="max_size_album_image">400dp</dimen>
@@ -54,6 +54,6 @@
 
 
     <dimen name="height_music_list_item">60dp</dimen>
-
+    
 
 </resources>
