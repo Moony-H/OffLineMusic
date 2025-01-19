@@ -8,6 +8,10 @@ import javax.inject.Inject
 import kotlin.random.Random
 
 internal class DummyGenerator @Inject constructor(@ApplicationContext private val context: Context) {
+
+    private var id = 0L
+        get() = ++field
+
     private val songTitleList = listOf(
         "한 페이지가 될 수 있게",
         "うたたね",
@@ -43,7 +47,7 @@ internal class DummyGenerator @Inject constructor(@ApplicationContext private va
         "AC/DC"
     )
 
-     val lyricsList = context.resources.getStringArray(R.array.song_lyrics).toList()
+    val lyricsList = context.resources.getStringArray(R.array.song_lyrics).toList()
 
 
     private val dummySongUrl = "https://storage.googleapis.com/exoplayer-test-media-0/play.mp3"
@@ -58,7 +62,7 @@ internal class DummyGenerator @Inject constructor(@ApplicationContext private va
         }
         return resultTitle?.let {
             MusicDTO(
-                id = Random.nextLong(),
+                id = id,
                 title = it,
                 musicUrl = dummySongUrl,
                 getRandom(artistNameList),
@@ -69,7 +73,7 @@ internal class DummyGenerator @Inject constructor(@ApplicationContext private va
         }
     }
 
-    fun getRandomMusicDTOList(size: Int = 10) = Array(size) {
+    fun getRandomMusicDTOList(size: Int = 50) = Array(size) {
         getRandomMusicDTO()
     }.toList()
 
@@ -81,7 +85,7 @@ internal class DummyGenerator @Inject constructor(@ApplicationContext private va
             index * (60000L / lyricsStringList.size)
         }
         return MusicDTO(
-            id = Random.nextLong(),
+            id = id,
             title = getRandom(songTitleList),
             musicUrl = dummySongUrl,
             artist = getRandom(artistNameList),

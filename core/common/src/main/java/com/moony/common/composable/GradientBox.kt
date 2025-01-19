@@ -23,7 +23,7 @@ import com.moony.resource.BackgroundBlack
 
 
 @Composable
-fun GradientBox(modifier: Modifier, gradientColors: List<Color>) {
+fun GradientBox(modifier: Modifier = Modifier, gradientColors: List<Color>) {
     if (gradientColors.isEmpty()) return
     if (gradientColors.size < 2) {
         Box(modifier = modifier
@@ -48,15 +48,13 @@ fun GradientBox(modifier: Modifier, gradientColors: List<Color>) {
         initialValue = -limit,
         targetValue = limit,
         animationSpec = infiniteRepeatable(
-            animation = tween(30000, easing = LinearEasing),
+            animation = tween(60000, easing = LinearEasing),
             repeatMode = RepeatMode.Restart
         ), label = "shimmer"
     )
     Box(
-        modifier = modifier
-            .aspectRatio(1f)
-            .drawWithCache {
-                val width = 8000f
+        modifier = modifier.drawWithCache {
+                val width = size.width * 4
                 val offset = width * progressAnimated
                 val brush = Brush.linearGradient(
                     colors = gradientColors,
@@ -64,20 +62,23 @@ fun GradientBox(modifier: Modifier, gradientColors: List<Color>) {
                     end = Offset(offset + width, width / 2),
                     tileMode = TileMode.Mirror
                 )
-
+                val fadeEffect =
+                    Brush.verticalGradient(
+                        0f to Color.Transparent,
+                        1f to BackgroundBlack,
+                        tileMode = TileMode.Clamp
+                    )
                 onDrawBehind {
                     drawRect(
                         brush = brush,
                         blendMode = BlendMode.SrcIn
                     )
 
-                    val fadeEffect =
-                        Brush.verticalGradient(
-                            0f to BackgroundBlack,
-                            3f to Color.Transparent,
-                            tileMode = TileMode.Mirror
-                        )
-                    drawRect(brush = fadeEffect, blendMode = BlendMode.DstIn)
+                    drawRect(brush = fadeEffect)
+
+
+
+
 
                 }
             }

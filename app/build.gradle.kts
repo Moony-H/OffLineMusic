@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.konan.properties.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -10,6 +12,19 @@ android {
     namespace = "com.moony.offlinemusic"
     compileSdk = 35
 
+
+    // 로컬 프로퍼티 사용 부분
+    signingConfigs {
+        create("release") {
+            val localProperties = Properties()
+            val localPropertiesFile = rootProject.file("local.properties")
+            localProperties.load(localPropertiesFile.inputStream())
+            storeFile = file(localProperties.getProperty("key.store.file"))
+            storePassword = localProperties.getProperty("key.store.password")
+            keyAlias = localProperties.getProperty("key.alias.name")
+            keyPassword = localProperties.getProperty("key.alias.password")
+        }
+    }
     defaultConfig {
         applicationId = "com.moony.offlinemusic"
         minSdk = 24
@@ -20,13 +35,24 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+
+
     buildTypes {
-        release {
+        debug {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            applicationIdSuffix=".dev"
+        }
+        release {
+            isMinifyEnabled = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+            signingConfig = signingConfigs.getByName("release")
         }
     }
     compileOptions {
@@ -45,7 +71,6 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-
 
 
     //compose

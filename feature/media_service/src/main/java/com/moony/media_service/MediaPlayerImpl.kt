@@ -101,7 +101,7 @@ class MediaPlayerImpl @Inject constructor(
     }
 
     override fun next() {
-        if (player.currentMediaItemIndex == player.mediaItemCount-1) {
+        if (player.currentMediaItemIndex == player.mediaItemCount - 1) {
             player.seekTo(0, 0L)
             return
         }

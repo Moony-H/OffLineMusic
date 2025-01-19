@@ -16,7 +16,7 @@ class MusicPagingSource @Inject constructor(private val mediaPlayer: MediaPlayer
     }
 
     companion object {
-        const val ITEM_COUNT_PER_PAGE = 5
+        const val ITEM_COUNT_PER_PAGE = 30
     }
 
 

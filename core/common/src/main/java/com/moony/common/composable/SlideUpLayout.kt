@@ -1,6 +1,5 @@
 package com.moony.common.composable
 
-import android.util.Log
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.gestures.AnchoredDraggableState
@@ -13,9 +12,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -26,7 +25,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
-import kotlin.math.abs
 import kotlin.math.roundToInt
 
 
@@ -51,6 +49,8 @@ fun SlideUpLayout(
 
 
     var size by remember { mutableStateOf(IntSize.Zero) }
+
+
     val state by remember {
         derivedStateOf {
             AnchoredDraggableState(
@@ -64,25 +64,16 @@ fun SlideUpLayout(
                 animationSpec = tween()
             )
         }
+    }
 
+
+    val dragProgress = remember(state.offset) {
+        val minAnchor = state.anchors.minAnchor()
+        val maxAnchor = state.anchors.maxAnchor()
+        val currentOffset = state.offset
+        1f - ((currentOffset - minAnchor) / (maxAnchor - minAnchor)).coerceIn(0f, 1f)
     }
-    val dragProgress by remember(state.offset) {
-        derivedStateOf {
-            val minAnchor = state.anchors.minAnchor()
-            val maxAnchor = state.anchors.maxAnchor()
-            val currentOffset = state.offset
-            1f - ((currentOffset - minAnchor) / (maxAnchor - minAnchor)).coerceIn(0f, 1f)
-        }
-    }
-//    var beforeDragProgress by remember { mutableFloatStateOf(0f) }
-//    LaunchedEffect(dragProgress) {
-//        if (abs(dragProgress - beforeDragProgress) > dragProcessThreshold) {
-//            beforeDragProgress = dragProgress
-//            onDragProgressChanged(dragProgress)
-//        }else if(dragProgress==1f ||dragProgress==0f){
-//            onDragProgressChanged(dragProgress)
-//        }
-//    }
+
 
     LaunchedEffect(dragProgress) {
         onDragProgressChanged(dragProgress)
@@ -101,7 +92,6 @@ fun SlideUpLayout(
         modifier = modifier
             .fillMaxSize()
             .onSizeChanged { size = it }
-            .anchoredDraggable(state, orientation = Orientation.Vertical)
     ) {
         backgroundContent()
         Box(
@@ -115,7 +105,7 @@ fun SlideUpLayout(
                     )
                 }
                 .fillMaxSize()
-
+                .anchoredDraggable(state, orientation = Orientation.Vertical)
         ) {
             slideContent()
         }
@@ -123,3 +113,14 @@ fun SlideUpLayout(
 
 }
 
+//혹시 몰라 코드 쟁여놓기
+
+//    var beforeDragProgress by remember { mutableFloatStateOf(0f) }
+//    LaunchedEffect(dragProgress) {
+//        if (abs(dragProgress - beforeDragProgress) > dragProcessThreshold) {
+//            beforeDragProgress = dragProgress
+//            onDragProgressChanged(dragProgress)
+//        }else if(dragProgress==1f ||dragProgress==0f){
+//            onDragProgressChanged(dragProgress)
+//        }
+//    }

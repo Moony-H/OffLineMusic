@@ -2,6 +2,7 @@ package com.moony.playlist
 
 import android.util.Log
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -15,6 +16,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.Dp
+import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.moony.common.composable.GradientBackground
 import com.moony.common.composable.GradientBox
@@ -36,21 +38,22 @@ fun PlaylistScreen(modifier: Modifier = Modifier, topPadding: Dp) {
     val albumBackgroundMinSize = dimensionResource(R.dimen.min_size_album_background_image)
     val albumBackgroundMaxSize = dimensionResource(R.dimen.max_size_album_background_image)
 
+
     GradientBackground(
         modifier = modifier,
-//        gradientBoxModifier = Modifier.sizeIn(
-//            minWidth = albumBackgroundMinSize,
-//            maxWidth = albumBackgroundMaxSize,
-//            minHeight = albumBackgroundMinSize,
-//            maxHeight = albumBackgroundMaxSize
-//        ),
+        gradientBoxModifier = Modifier.sizeIn(
+            minWidth = albumBackgroundMinSize,
+            maxWidth = albumBackgroundMaxSize,
+            minHeight = albumBackgroundMinSize,
+            maxHeight = albumBackgroundMaxSize
+        ).fillMaxWidth().aspectRatio(1f),
         colors = backgroundColors,
     ) {
-
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(top = topPadding),
+
         ) {
             item {
                 PlaylistHeader(
@@ -59,7 +62,9 @@ fun PlaylistScreen(modifier: Modifier = Modifier, topPadding: Dp) {
                         .height(height)
                 )
             }
-            items(playlist.itemCount) { index ->
+            items(playlist.itemCount,key = {
+                playlist[it]?.id ?: 0
+            },) { index ->
                 playlist[index]?.let { music ->
                     MusicListItem(
                         modifier = Modifier

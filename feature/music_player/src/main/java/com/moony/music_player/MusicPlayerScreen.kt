@@ -1,5 +1,6 @@
 package com.moony.music_player
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -17,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -68,7 +70,7 @@ fun MusicScreen(
 
     //album
     val albumImage by mediaViewModel.albumImage.collectAsState()
-    val albumColors by mediaViewModel.albumColors.collectAsState()
+    val backgroundColors by mediaViewModel.albumColors.collectAsState()
 
 
     //****Resource****
@@ -89,27 +91,35 @@ fun MusicScreen(
     //miniPlayer
     val bottomMiniPlayerHeight = dimensionResource(R.dimen.height_bottom_mini_player)
 
+    //
+    val screenHorizontalPadding = dimensionResource(R.dimen.screen_padding_horizontal)
+
     //music
     val music = musicState.value ?: Music.getEmpty()
 
 
     Box(modifier = modifier) {
         GradientBackground(
-            modifier = Modifier
-                .alpha(alpha)
-                .fillMaxSize(),
-            gradientBoxModifier = Modifier.sizeIn(
-                minWidth = albumBackgroundMinSize,
-                maxWidth = albumBackgroundMaxSize,
-                minHeight = albumBackgroundMinSize,
-                maxHeight = albumBackgroundMaxSize
-            ),
-            colors = albumColors,
+            modifier = modifier.fillMaxSize(),
+            gradientBoxModifier = Modifier
+                .sizeIn(
+                    minWidth = albumBackgroundMinSize,
+                    maxWidth = albumBackgroundMaxSize,
+                    minHeight = albumBackgroundMinSize,
+                    maxHeight = albumBackgroundMaxSize
+                )
+                .fillMaxWidth()
+                .aspectRatio(1f),
+            colors = backgroundColors,
         ) {
             Column(
-                modifier = modifier
-                    .padding(top = scaffoldTopPadding)
-                    .padding(horizontal = dimensionResource(R.dimen.screen_padding_horizontal)),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(
+                        top = scaffoldTopPadding,
+                        start = screenHorizontalPadding,
+                        end = screenHorizontalPadding
+                    ),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Spacer(modifier = Modifier.height(12.dp))
@@ -133,8 +143,7 @@ fun MusicScreen(
                         .fillMaxWidth()
                         .padding(horizontal = dimensionResource(R.dimen.screen_padding_horizontal))
                         .aspectRatio(1f)
-                        .clip(RoundedCornerShape(albumCornerRadius))
-                    ,
+                        .clip(RoundedCornerShape(albumCornerRadius)),
                     contentScale = ContentScale.Crop,
                     contentDescription = stringResource(R.string.content_alum_image),
                 )
@@ -184,10 +193,13 @@ fun MusicScreen(
 
             }
         }
-        MiniPlayer(modifier = Modifier
-            .alpha(1f-alpha)
-            .fillMaxWidth()
-            .height(bottomMiniPlayerHeight))
+        MiniPlayer(
+            modifier = Modifier
+                .alpha(1f - alpha)
+                .fillMaxWidth()
+                .height(bottomMiniPlayerHeight)
+        )
     }
-
 }
+
+
