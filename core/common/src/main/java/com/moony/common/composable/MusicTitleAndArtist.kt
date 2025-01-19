@@ -24,7 +24,8 @@ fun MusicTitleAndArtist(
     artist: String,
     titleSize: Dp,
     artistTextSize: Dp,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    color: Color = Color.Unspecified,
 ) {
     Column(modifier = modifier) {
         Text(
@@ -34,9 +35,15 @@ fun MusicTitleAndArtist(
             modifier = Modifier.basicMarquee(
                 animationMode = MarqueeAnimationMode.Immediately,
                 iterations = Int.MAX_VALUE
-            )
+            ),
+            color = color
         )
-        Text(text = artist, fontSize = artistTextSize.value.sp, maxLines = 1)
+        Text(
+            text = artist,
+            fontSize = artistTextSize.value.sp,
+            maxLines = 1,
+            color = color
+        )
     }
 }
 

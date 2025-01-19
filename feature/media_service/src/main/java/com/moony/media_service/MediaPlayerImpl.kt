@@ -44,7 +44,7 @@ class MediaPlayerImpl @Inject constructor(
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
 
-    override val nowMusicItemIndexFlow = MutableStateFlow(player.currentMediaItemIndex)
+    override val currentMusicIndexFlow = MutableStateFlow(player.currentMediaItemIndex)
     override val musicCountFlow = MutableStateFlow(0)
     override val repeatModeFlow = MutableStateFlow(RepeatMode.NONE)
     override val isShuffleFlow = MutableStateFlow(false)
@@ -59,6 +59,7 @@ class MediaPlayerImpl @Inject constructor(
             override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
                 super.onMediaItemTransition(mediaItem, reason)
                 currentMusicFlow.value = mediaItem?.toMusic()
+                currentMusicIndexFlow.value = player.currentMediaItemIndex
             }
 
 
@@ -168,7 +169,6 @@ class MediaPlayerImpl @Inject constructor(
         Player.REPEAT_MODE_ONE -> RepeatMode.ONE
         Player.REPEAT_MODE_OFF -> RepeatMode.NONE
         else -> {
-            Log.e("test", "repeat mode not found")
             RepeatMode.NONE
         }
     }

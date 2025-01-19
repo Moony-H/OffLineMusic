@@ -21,9 +21,15 @@ import com.moony.domain.model.Music
 import com.moony.resource.R
 import com.moony.common.composable.ImageWithPlaceHolder
 import com.moony.common.composable.MusicTitleAndArtist
+import com.moony.resource.OnGreen
 
 @Composable
-fun MusicListItem(music: Music, modifier: Modifier = Modifier, onClick: () -> Unit = {}) {
+fun MusicListItem(
+    music: Music,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {},
+    isPlaying: Boolean = false
+) {
 
 
     //padding
@@ -32,6 +38,9 @@ fun MusicListItem(music: Music, modifier: Modifier = Modifier, onClick: () -> Un
     //textSize
     val musicTitleTextSize = dimensionResource(R.dimen.text_size_music_title_small)
     val musicArtistTextSize = dimensionResource(R.dimen.text_size_music_artist_small)
+
+    //color
+    val textColor = if (isPlaying) OnGreen else Color.Unspecified
 
     Row(
         modifier = modifier
@@ -50,11 +59,12 @@ fun MusicListItem(music: Music, modifier: Modifier = Modifier, onClick: () -> Un
         )
         Spacer(modifier = Modifier.width(8.dp))
         MusicTitleAndArtist(
+            modifier = Modifier.weight(1f),
             titleSize = musicTitleTextSize,
             artistTextSize = musicArtistTextSize,
             title = music.title,
             artist = music.artist,
-            modifier = Modifier.weight(1f)
+            color = textColor
         )
 
     }

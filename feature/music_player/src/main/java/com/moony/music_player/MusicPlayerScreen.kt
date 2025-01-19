@@ -1,5 +1,6 @@
 package com.moony.music_player
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -28,6 +29,7 @@ import com.moony.common.composable.ImageWithPlaceHolder
 import com.moony.common.media.LocalMediaViewModel
 import com.moony.domain.model.Music
 import com.moony.common.composable.GradientBackground
+import com.moony.domain.type.RepeatMode
 import com.moony.music_player.component.LyricsText
 import com.moony.music_player.component.MiniPlayer
 import com.moony.music_player.component.MusicBottomIconGroup
@@ -98,7 +100,9 @@ fun MusicScreen(
     val music = musicState.value ?: Music.getEmpty()
 
 
-    Box(modifier = modifier) {
+    Box(
+        modifier = modifier
+    ) {
         GradientBackground(
             modifier = modifier.fillMaxSize(),
             gradientBoxModifier = Modifier
@@ -113,7 +117,7 @@ fun MusicScreen(
             colors = backgroundColors,
         ) {
             Column(
-                modifier = Modifier
+                modifier = Modifier.alpha(alpha)
                     .fillMaxSize()
                     .padding(
                         top = scaffoldTopPadding,
@@ -126,7 +130,6 @@ fun MusicScreen(
                 TopBar(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .alpha(alpha)
                         .padding(vertical = dimensionResource(R.dimen.screen_padding_vertical))
                 )
                 Spacer(modifier = Modifier.weight(2f))

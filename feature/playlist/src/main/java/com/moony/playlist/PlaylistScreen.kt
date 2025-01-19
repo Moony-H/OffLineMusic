@@ -30,8 +30,11 @@ import com.moony.resource.R
 @Composable
 fun PlaylistScreen(modifier: Modifier = Modifier, topPadding: Dp) {
     val viewModel = LocalMediaViewModel.current
+
+    //state
     val playlist = viewModel.musicListPagingFlow.collectAsLazyPagingItems()
     val backgroundColors by viewModel.albumColors.collectAsState()
+    val playingMusicIndex by viewModel.currentMusicIndexFlow.collectAsState()
 
     val height = dimensionResource(R.dimen.height_size_playlist_header)
     val itemHeight = dimensionResource(R.dimen.height_music_list_item)
@@ -41,6 +44,10 @@ fun PlaylistScreen(modifier: Modifier = Modifier, topPadding: Dp) {
 
     val screenPaddingHorizontal = dimensionResource(R.dimen.screen_padding_horizontal)
     val screenPaddingVertical = dimensionResource(R.dimen.screen_padding_vertical)
+
+    LaunchedEffect(playingMusicIndex){
+        Log.d("test", "playingMusicIndex: $playingMusicIndex")
+    }
 
     GradientBackground(
         modifier = modifier,
@@ -85,7 +92,8 @@ fun PlaylistScreen(modifier: Modifier = Modifier, topPadding: Dp) {
                         onClick = {
                             viewModel.seekMusicByIndex(index)
                             viewModel.play()
-                        }
+                        },
+                        isPlaying = playingMusicIndex == index
                     )
                 }
             }

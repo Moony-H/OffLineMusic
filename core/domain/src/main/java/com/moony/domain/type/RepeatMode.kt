@@ -7,5 +7,4 @@ enum class RepeatMode {
 
     fun next() = RepeatMode.entries[(this.ordinal + 1) % RepeatMode.entries.size]
 
-
 }

@@ -14,7 +14,7 @@ interface MediaPlayer {
     val currentMusicFlow: StateFlow<Music?>
     val musicCountFlow: StateFlow<Int>
     val errorFlow: SharedFlow<PlayerError>
-    val nowMusicItemIndexFlow: StateFlow<Int>
+    val currentMusicIndexFlow: StateFlow<Int>
     val repeatModeFlow: StateFlow<RepeatMode>
     val isShuffleFlow: StateFlow<Boolean>
     fun play()
