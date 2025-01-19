@@ -1,5 +1,6 @@
 package com.moony.app_test
 
+import android.content.ComponentName
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,9 +15,17 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.media3.session.MediaController
+import androidx.media3.session.SessionToken
 import com.moony.common.media.LocalMediaViewModel
 import com.moony.designsystem.OffLineMusicTheme
+import com.moony.media_service.MediaService
+import com.moony.playlist.PlaylistScreen
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class TestActivity : ComponentActivity() {
 
 
@@ -24,32 +33,29 @@ class TestActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        startService()
         enableEdgeToEdge()
         setContent {
             OffLineMusicTheme {
                 CompositionLocalProvider(LocalMediaViewModel.provides(viewModel)) {
                     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-
+                        PlaylistScreen(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(innerPadding),
+                            0.dp
+                        )
                     }
                 }
 
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    OffLineMusicTheme {
-        Greeting("Android")
+    private fun startService() {
+        val sessionToken =
+            SessionToken(applicationContext, ComponentName(this, MediaService::class.java))
+        MediaController.Builder(applicationContext, sessionToken).buildAsync()
     }
 }
+

@@ -73,14 +73,8 @@ fun ImageWithPlaceHolder(
     contentScale: ContentScale = ContentScale.Fit,
 
     ) {
-    val context = LocalContext.current
     GlideImage(
-        model = Glide
-            .with(context)
-            .load(url)
-            .error(R.drawable.no_image_placeholder)
-            .submit()
-            .get(),
+        model = url,
         contentDescription = contentDescription,
         modifier = modifier,
         contentScale = contentScale,

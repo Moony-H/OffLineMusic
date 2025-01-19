@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import com.moony.common.composable.ImageWithPlaceHolder
 import com.moony.common.media.LocalMediaViewModel
 import com.moony.domain.model.Music
-import com.moony.music_player.component.GradientBackground
+import com.moony.common.composable.GradientBackground
 import com.moony.music_player.component.LyricsText
 import com.moony.music_player.component.MiniPlayer
 import com.moony.music_player.component.MusicBottomIconGroup

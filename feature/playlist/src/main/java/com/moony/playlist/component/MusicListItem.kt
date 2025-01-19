@@ -1,6 +1,7 @@
 package com.moony.playlist.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -22,21 +23,20 @@ import com.moony.common.composable.ImageWithPlaceHolder
 import com.moony.common.composable.MusicTitleAndArtist
 
 @Composable
-fun MusicListItem(modifier: Modifier = Modifier, music: Music) {
+fun MusicListItem(music: Music, modifier: Modifier = Modifier, onClick: () -> Unit = {}) {
 
-    val height = dimensionResource(R.dimen.height_music_list_item)
 
     //padding
     val paddingHorizontal = dimensionResource(R.dimen.padding_music_list_item_horizontal)
     val paddingVertical = dimensionResource(R.dimen.padding_music_list_item_vertical)
 
     //textSize
-    val musicTitleTextSize = dimensionResource(R.dimen.text_size_music_title)
-    val musicArtistTextSize = dimensionResource(R.dimen.text_size_music_artist)
+    val musicTitleTextSize = dimensionResource(R.dimen.text_size_music_title_small)
+    val musicArtistTextSize = dimensionResource(R.dimen.text_size_music_artist_small)
 
     Row(
         modifier = modifier
-            .height(height)
+            .clickable(onClick = onClick)
             .background(Color.Transparent)
             .padding(horizontal = paddingHorizontal, vertical = paddingVertical),
         verticalAlignment = Alignment.CenterVertically

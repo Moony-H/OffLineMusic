@@ -6,10 +6,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.bumptech.glide.Glide
 import com.moony.common.BitmapManager
 import com.moony.common.MediaViewModel
+import com.moony.data.paging.MusicPagingSource
 import com.moony.domain.manager.MediaPlayer
 import com.moony.domain.model.Music
 import com.moony.domain.repository.MusicRepository
@@ -39,7 +41,6 @@ class MainViewModel @Inject constructor(
     @ApplicationContext private val context: Context,
     mediaPlayer: MediaPlayer,
     private val musicRepository: MusicRepository,
-    private val musicPager: Pager<Int, Music>
 ) : MediaViewModel(mediaPlayer) {
 
 
@@ -72,7 +73,13 @@ class MainViewModel @Inject constructor(
             }
         }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), "")
 
-    override val musicPagingFlow: Flow<PagingData<Music>> = musicPager.flow
+    @OptIn(ExperimentalCoroutinesApi::class)
+    override val musicListPagingFlow: Flow<PagingData<Music>> =musicCountFlow.flatMapLatest {
+        Pager(config = PagingConfig(
+            pageSize = MusicPagingSource.ITEM_COUNT_PER_PAGE,
+            enablePlaceholders = false,
+        ), pagingSourceFactory = { MusicPagingSource(mediaPlayer) }).flow
+    }
 
     override val albumImage = currentMusicFlow.filterNotNull().map { music ->
         Glide.with(context)

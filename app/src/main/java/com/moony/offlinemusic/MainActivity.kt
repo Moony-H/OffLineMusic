@@ -39,36 +39,10 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-    }
-
-    override fun onStop() {
-        super.onStop()
-    }
 
     private fun startService() {
         val sessionToken =
             SessionToken(applicationContext, ComponentName(this, MediaService::class.java))
         MediaController.Builder(applicationContext, sessionToken).buildAsync()
-    }
-
-    private fun setSystemBars(isDarkMode: Boolean) {
-        val systemBarStyle = if (!isDarkMode) {
-            SystemBarStyle.light(
-                BackgroundBlack.toArgb(),
-                Color.White.toArgb()
-            )
-        } else {
-            SystemBarStyle.dark(
-                BackgroundBlack.toArgb()
-            )
-        }
-        enableEdgeToEdge(statusBarStyle = systemBarStyle, navigationBarStyle = systemBarStyle)
-    }
-
-    private fun isDarkModeEnabled(): Boolean {
-        val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
-        return currentNightMode == Configuration.UI_MODE_NIGHT_YES
     }
 }

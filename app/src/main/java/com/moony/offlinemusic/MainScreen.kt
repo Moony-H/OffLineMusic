@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.LayoutDirection
 import com.moony.common.composable.SlideUpLayout
 import com.moony.common.media.LocalMediaViewModel
 import com.moony.music_player.MusicScreen
+import com.moony.playlist.PlaylistScreen
 import com.moony.resource.R
 
 
@@ -54,7 +55,7 @@ fun MainScreen() {
                 )
             },
             backgroundContent = {
-
+                PlaylistScreen(modifier = Modifier.fillMaxSize().padding(top = innerPadding.calculateTopPadding()))
             }
         )
 

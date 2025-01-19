@@ -56,7 +56,6 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
 
-    implementation(libs.androidx.media3.session)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -89,6 +88,7 @@ dependencies {
     implementation(project(":core:designsystem"))
     implementation(project(":feature:music_player"))
     implementation(project(":feature:media_service"))
+    implementation(project(":feature:playlist"))
 
 
 }
