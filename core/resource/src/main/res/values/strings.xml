@@ -28,4 +28,7 @@
     <string name="button_library">ライブラリ</string>
     <string name="button_search">検索</string>
 
+    <!--string-->
+    <string name="text_playlist">プレイリスト</string>
+
 </resources>

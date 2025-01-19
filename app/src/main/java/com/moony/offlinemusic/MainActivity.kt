@@ -2,26 +2,20 @@ package com.moony.offlinemusic
 
 import android.content.ComponentName
 import android.content.res.Configuration
-import android.os.Build
 import android.os.Bundle
-import android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
-import android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
-import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
-import androidx.core.view.WindowCompat
 import androidx.media3.session.MediaController
 import androidx.media3.session.SessionToken
 import com.moony.common.media.LocalMediaViewModel
 import com.moony.media_service.MediaService
-import com.moony.offlinemusic.ui.theme.OffLineMusicTheme
+import com.moony.designsystem.OffLineMusicTheme
 import com.moony.resource.BackgroundBlack
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -40,7 +34,6 @@ class MainActivity : ComponentActivity() {
                     LocalMediaViewModel.provides(viewModel)
                 ) {
                     MainScreen()
-                    //SingleGradientTest(listOf(Color.Yellow ,Color.Green,Color.Blue))
                 }
             }
         }

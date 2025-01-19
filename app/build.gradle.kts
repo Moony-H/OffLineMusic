@@ -77,13 +77,16 @@ dependencies {
     // paging3
     implementation(libs.androidx.paging.compose)
 
+    //system ui
     implementation(libs.accompanist.systemuicontroller)
 
+    //glide
     implementation(libs.glide.compose)
 
 
     implementation(project(":core:data"))
     implementation(project(":core:common"))
+    implementation(project(":core:designsystem"))
     implementation(project(":feature:music_player"))
     implementation(project(":feature:media_service"))
 

@@ -17,6 +17,7 @@ media3Exoplayer = "1.4.1"
 media3Session = "1.5.1"
 jetbrainsKotlinJvm = "2.0.0"
 kspVersion = "2.0.10-1.0.24"
+pagingCompose = "3.3.2"
 pagingVersion = "3.3.4"
 
 

@@ -28,4 +28,8 @@
     <string name="button_today">today</string>
     <string name="button_library">라이브러리</string>
     <string name="button_search">검색</string>
+
+
+    <!--string-->
+    <string name="text_playlist">플레이리스트</string>
 </resources>
