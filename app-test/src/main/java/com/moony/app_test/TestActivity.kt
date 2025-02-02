@@ -2,10 +2,17 @@ package com.moony.app_test
 
 import android.content.ComponentName
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.calculateEndPadding
 import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,6 +21,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -45,17 +53,18 @@ class TestActivity : ComponentActivity() {
             OffLineMusicTheme {
                 CompositionLocalProvider(LocalMediaViewModel.provides(viewModel)) {
                     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                        val direction= LocalLayoutDirection.current
-                        PlaylistScreen(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .padding(
-                                    start = innerPadding.calculateStartPadding(direction),
-                                    end = innerPadding.calculateEndPadding(direction),
-                                    bottom = innerPadding.calculateBottomPadding()
-                                ),
-                            topPadding = innerPadding.calculateTopPadding()
-                        )
+                        val direction = LocalLayoutDirection.current
+                        Box(modifier = Modifier.padding(innerPadding)) {
+                            val a = rememberInfiniteTransition()
+                            val b = a.animateFloat(
+                                initialValue = -1f,
+                                targetValue = 1f,
+                                animationSpec = infiniteRepeatable(
+                                    animation = tween(1000),
+                                    repeatMode = RepeatMode.Reverse
+                                )
+                            )
+                        }
                     }
 
                 }

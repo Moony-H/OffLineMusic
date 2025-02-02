@@ -8,6 +8,7 @@ import com.moony.domain.manager.MediaPlayer
 import com.moony.domain.model.Music
 import com.moony.domain.type.PlayerError
 import com.moony.domain.type.RepeatMode
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.delay
@@ -16,6 +17,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flattenMerge
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.isActive
 import javax.inject.Inject
 
@@ -34,7 +36,7 @@ class MediaPlayerImpl @Inject constructor(
                     send(player.currentPosition)
                 }
             }
-        }.flattenMerge() //빠르게 변경되면 이전 flow가 취소되지 않은 상태에서 두 flow가 병렬로 실행될 수 있음.
+        }.flattenMerge().flowOn(Dispatchers.IO) //빠르게 변경되면 이전 flow가 취소되지 않은 상태에서 두 flow가 병렬로 실행될 수 있음.
     //그래서 flattenMerge로 병합함.
 
     override val durationFlow = MutableStateFlow(0L)
