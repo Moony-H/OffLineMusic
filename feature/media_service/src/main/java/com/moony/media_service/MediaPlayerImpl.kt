@@ -19,6 +19,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flattenMerge
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.isActive
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class MediaPlayerImpl @Inject constructor(
@@ -33,7 +34,8 @@ class MediaPlayerImpl @Inject constructor(
             channelFlow {
                 while (isPlaying && coroutineContext.isActive) {
                     delay(250L)
-                    send(player.currentPosition)
+                    val position = withContext(Dispatchers.Main) { player.currentPosition }
+                    send(position)
                 }
             }
         }.flattenMerge().flowOn(Dispatchers.IO) //빠르게 변경되면 이전 flow가 취소되지 않은 상태에서 두 flow가 병렬로 실행될 수 있음.
