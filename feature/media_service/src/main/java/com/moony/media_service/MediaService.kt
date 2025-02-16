@@ -20,19 +20,20 @@ class MediaService : MediaLibraryService() {
     @Inject
     lateinit var mediaLibrarySession: MediaLibrarySession
 
-    override fun onGetSession(controllerInfo: MediaSession.ControllerInfo) =
-        mediaLibrarySession
 
-    override fun onTaskRemoved(rootIntent: Intent?) {
-        val player = mediaLibrarySession.player
-        if (!player.playWhenReady
-            || player.mediaItemCount == 0
-            || (player.playbackState == Player.STATE_ENDED
-                    && player.repeatMode == Player.REPEAT_MODE_OFF) //곡이 끝났고, 반복 재생 모드가 아닐 때
-        ) {
-            stopSelf()
-        }
+    override fun onCreate() {
+        super.onCreate()
+        Log.e("test", "create")
+        Log.e("test","librarysession: ${System.identityHashCode(mediaLibrarySession)}")
+        Log.e("test","app context: ${System.identityHashCode(application)}")
     }
+
+    override fun onGetSession(controllerInfo: MediaSession.ControllerInfo): MediaLibrarySession {
+        Log.e("test","mediaLibraryService on get session")
+        return mediaLibrarySession
+    }
+
+
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         return super.onStartCommand(intent, flags, startId)
@@ -40,7 +41,6 @@ class MediaService : MediaLibraryService() {
 
     override fun onDestroy() {
         mediaLibrarySession.run {
-            player.release()
             release()
         }
         Log.e("test", "service destroyed")

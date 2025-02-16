@@ -1,6 +1,7 @@
 package com.moony.media_service.di
 
 import android.content.Context
+import android.util.Log
 import androidx.annotation.OptIn
 import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
@@ -11,7 +12,9 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ServiceComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.android.scopes.ServiceScoped
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -20,11 +23,20 @@ import javax.inject.Singleton
 object MediaServiceProvidesModule {
     @Provides
     @Singleton
-    fun providesExoPlayer(@ApplicationContext context: Context) = ExoPlayer.Builder(context).build()
+    fun providesExoPlayer(@ApplicationContext context: Context): Player {
+        Log.e("test", "providesExoPlayer")
+        return ExoPlayer.Builder(context).build()
+    }
 
+
+}
+
+@Module
+@InstallIn(ServiceComponent::class)
+object MediaLibrarySessionProvidesModule {
     @OptIn(UnstableApi::class)
     @Provides
-    @Singleton
+    @ServiceScoped
     fun providesMediaLibrarySession(@ApplicationContext context: Context, player: Player) =
         MediaLibrarySession.Builder(
             context,

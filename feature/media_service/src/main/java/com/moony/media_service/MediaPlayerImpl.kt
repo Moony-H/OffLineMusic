@@ -28,6 +28,12 @@ class MediaPlayerImpl @Inject constructor(
     override val isPlayingFlow = MutableStateFlow(false)
     override val currentMusicFlow = MutableStateFlow<Music?>(null)
 
+    init {
+        Log.e("test", "ExoPlayer? : $player")
+        Log.e("test","Exo Id?: ${System.identityHashCode(player)}")
+        Log.e("test","Exo This? : ${System.identityHashCode(this)}")
+    }
+
     @OptIn(ExperimentalCoroutinesApi::class)
     override val currentPositionFlow = currentMusicFlow
         .combine(isPlayingFlow) { currentMusic, isPlaying ->
@@ -38,7 +44,8 @@ class MediaPlayerImpl @Inject constructor(
                     send(position)
                 }
             }
-        }.flattenMerge().flowOn(Dispatchers.IO) //빠르게 변경되면 이전 flow가 취소되지 않은 상태에서 두 flow가 병렬로 실행될 수 있음.
+        }.flattenMerge()
+        .flowOn(Dispatchers.IO) //빠르게 변경되면 이전 flow가 취소되지 않은 상태에서 두 flow가 병렬로 실행될 수 있음.
     //그래서 flattenMerge로 병합함.
 
     override val durationFlow = MutableStateFlow(0L)

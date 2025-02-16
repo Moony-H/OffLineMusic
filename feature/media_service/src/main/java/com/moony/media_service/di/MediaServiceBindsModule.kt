@@ -19,11 +19,8 @@ abstract class MediaServiceBindsModule {
     @Singleton
     abstract fun providesMediaPlayer(mediaPlayerImpl: MediaPlayerImpl): MediaPlayer
 
-    @Binds
-    @Singleton
-    abstract fun bindsPlayer(exoPlayer: ExoPlayer): Player
 
-    @Binds
-    @Singleton
-    abstract fun bindsMediaSession(mediaLibrarySession: MediaLibrarySession): MediaSession
+//    @Binds
+//    @Singleton
+//    abstract fun bindsMediaSession(mediaLibrarySession: MediaLibrarySession): MediaSession
 }
